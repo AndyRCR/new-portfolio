@@ -9,7 +9,7 @@ import {
 import * as THREE from 'three'
 import room from '../assets/models/room.glb'
 
-import videoBlender from '../assets/videos/makingroom.mp4'
+import videoBlender from '../assets/videos/makingroom_compressed.mp4'
 
 import bakedTexture from '../assets/images/bakednight.jpg'
 import curtainTexture from '../assets/images/cortina.jpg'
