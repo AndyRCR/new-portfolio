@@ -1,3 +1,7 @@
+.view > div{
+    transition: .3s linear;
+}
+
 .view > div.dark{
     background-color: #111133;
 }
