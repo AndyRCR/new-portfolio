@@ -1,0 +1,21 @@
+.themeSwitch{
+    position: absolute;
+    top: 30px;
+    right: 30px;
+}
+
+.themeSwitch.dark button{
+    border: 1px solid white;
+    color: white;
+}
+
+.themeSwitch.light button{
+    border: 1px solid black;
+    color: black;
+}
+
+.themeSwitch button{
+    border-radius: 15px;
+    padding: 5px 10px;
+    transition: .3s;
+}
