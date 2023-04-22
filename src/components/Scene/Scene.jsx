@@ -2,8 +2,6 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import * as THREE from 'three'
 
-import Chair from '../Chair/Chair'
-import Venom from '../Venom/Venom'
 import Room from '../Room/Room'
 import Glass from '../Glass/Glass'
 import Screen from '../Screen/Screen'
@@ -25,7 +23,6 @@ const Scene = (props) => {
 	const lerpModel = (e) => {
 		const x = e.clientX
 		const xRotation = (x / window.innerWidth) * 2 - 1
-		console.log(xRotation)
 		group.current.rotation.y = THREE.MathUtils.lerp(
 			group.current.rotation.y,
 			xRotation / 10 - Math.PI / 4,
@@ -63,8 +60,6 @@ const Scene = (props) => {
 			{...props}
 		>
 			<Room nodes={nodes} />
-			<Chair nodes={nodes} />
-			<Venom nodes={nodes} />
 			<Glass nodes={nodes} />
 			<Screen nodes={nodes} />
 			<Lights nodes={nodes} />

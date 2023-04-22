@@ -6,9 +6,12 @@ import videoBlender from '../assets/videos/makingroom_compressed.mp4'
 
 import bakedday from '../assets/images/bakedday.jpg'
 import bakednight from '../assets/images/bakednight.jpg'
-import curtainTexture from '../assets/images/cortina.jpg'
-import floorTexture from '../assets/images/floor.jpg'
-import venomTexture from '../assets/images/venom.jpg'
+import curtainday from '../assets/images/curtainday.jpg'
+import curtainnight from '../assets/images/curtainnight.jpg'
+import floorday from '../assets/images/floorday.jpg'
+import floornight from '../assets/images/floornight.jpg'
+import venomday from '../assets/images/venomday.jpg'
+import venomnight from '../assets/images/venomnight.jpg'
 
 import bakedVertexShader from '../shaders/baked/vertex.glsl'
 import bakedFragmentShader from '../shaders/baked/fragment.glsl'
@@ -19,22 +22,14 @@ import rgbFragmentShader from '../shaders/rgb/fragment.glsl'
 
 const textureLoader = new THREE.TextureLoader()
 
-const createTexture = (image) => {
-    const texture = textureLoader.load(image)
-    texture.flipY = false
-    texture.encoding = THREE.sRGBEncoding
-    texture.minFilter = THREE.LinearFilter
-
-    const material = new THREE.MeshBasicMaterial({ map: texture })
-
-    return material
-}
-
-const createThemeTexture = (dayImage, nightImage) => {
+const createThemeTexture = (dayImage, nightImage, double) => {
     const textureDay = textureLoader.load(dayImage)
     textureDay.flipY = false
+    // textureDay.minFilter = THREE.LinearFilter
+
     const textureNight = textureLoader.load(nightImage)
     textureNight.flipY = false
+    // textureNight.minFilter = THREE.LinearFilter
 
     const material = new THREE.ShaderMaterial({
         uniforms: {
@@ -45,6 +40,7 @@ const createThemeTexture = (dayImage, nightImage) => {
         vertexShader: bakedVertexShader,
         fragmentShader: bakedFragmentShader,
     })
+    if (double) material.side = THREE.DoubleSide
 
     return material
 }
@@ -58,6 +54,8 @@ const createVideoTexture = (videoSrc) => {
     video.play()
 
     const videoTexture = new THREE.VideoTexture(video)
+    videoTexture.encoding = THREE.sRGBEncoding
+    // videoTexture.minFilter = THREE.LinearFilter
     const material = new THREE.MeshBasicMaterial({ map: videoTexture })
 
     return material
@@ -75,9 +73,9 @@ const createShaderTexture = (vertexShader, fragmentShader) => {
 export default {
     textures: {
         bakedTexture: createThemeTexture(bakedday, bakednight),
-        curtainTexture: createTexture(curtainTexture),
-        floorTexture: createTexture(floorTexture),
-        venomTexture: createTexture(venomTexture)
+        curtainTexture: createThemeTexture(curtainday, curtainnight),
+        floorTexture: createThemeTexture(floorday, floornight, true),
+        venomTexture: createThemeTexture(venomday, venomnight),
     },
     shaders: {
         redLight: createShaderTexture(redVertexShader, redFragmentShader),
