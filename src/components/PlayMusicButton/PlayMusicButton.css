@@ -1,31 +1,71 @@
-.playMusicButtonContainer{
-    cursor: pointer;
-    background-color: #3A16B3;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 14px;
-    padding: 10px;
-    border-radius: 50%;
-    transition: .1s;
-    user-select: none;
+.playMusicButtonContainer {
+	cursor: pointer;
+	background-color: #3a16b3;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 14px;
+	padding: 10px;
+	border-radius: 50%;
+	transition: 0.1s;
+	user-select: none;
+	width: 36px;
+	height: 36px;
 }
 
-.playMusicButtonContainer:hover{
-    scale: 1.1;
+.playMusicButtonContainer:hover {
+	scale: 1.1;
 }
 
-.playMusicButtonContainer:active{
-    scale: 0.9;
+.playMusicButtonContainer:active {
+	scale: 0.9;
 }
 
-.playMusicButtonContainer img{
-    width: 15px;
+.playMusicButtonContainer img {
+	width: 100%;
+	height: 100%;
 }
 
-.playMusicButton .stopButton{
-    width: 15px;
-    height: 15px;
-    background-color: #fff;
-    border-radius: 3px;
+.playMusicButton .stopButton {
+	width: 14px;
+	height: 14px;
+	background-color: #fff;
+	border-radius: 3px;
+}
+
+/*Loader*/
+
+.loader {
+	display: inline-block;
+	position: relative;
+	width: 14px;
+	height: 14px;
+}
+.loader div {
+	box-sizing: border-box;
+	display: block;
+	position: absolute;
+	width: 14px;
+	height: 14px;
+	border: 2px solid #fff;
+	border-radius: 50%;
+	animation: loader 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+	border-color: #fff transparent transparent transparent;
+}
+.loader div:nth-child(1) {
+	animation-delay: -0.45s;
+}
+.loader div:nth-child(2) {
+	animation-delay: -0.3s;
+}
+.loader div:nth-child(3) {
+	animation-delay: -0.15s;
+}
+@keyframes loader {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
 }

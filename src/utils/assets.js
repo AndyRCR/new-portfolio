@@ -25,11 +25,11 @@ const textureLoader = new THREE.TextureLoader()
 const createThemeTexture = (dayImage, nightImage, double) => {
     const textureDay = textureLoader.load(dayImage)
     textureDay.flipY = false
-    // textureDay.minFilter = THREE.LinearFilter
+    textureDay.minFilter = THREE.LinearFilter
 
     const textureNight = textureLoader.load(nightImage)
     textureNight.flipY = false
-    // textureNight.minFilter = THREE.LinearFilter
+    textureNight.minFilter = THREE.LinearFilter
 
     const material = new THREE.ShaderMaterial({
         uniforms: {

@@ -7,14 +7,27 @@ import './PlayMusicButton.css'
 
 const PlayMusicButton = () => {
 	const [isPlaying, setIsPlaying] = useState(false)
+	const [isLoading, setIsLoading] = useState(false)
 	const [loaded, setLoaded] = useState(false)
 	const [sound, setSound] = useState(null)
 
+	const handleAction = () => {
+		if (isLoading) return
+
+		if (isPlaying) {
+			handleStop()
+		} else {
+			handlePlay()
+		}
+	}
+
 	const handlePlay = () => {
 		if (!loaded) {
+			setIsLoading(true)
 			const newSound = new Howl({
 				src: [nocturne],
 				onplay: () => {
+					setIsLoading(false)
 					setIsPlaying(true)
 				},
 				onend: () => {
@@ -50,7 +63,14 @@ const PlayMusicButton = () => {
 				onClick={isPlaying ? handleStop : handlePlay}
 				className='playMusicButtonContainer'
 			>
-				{isPlaying ? (
+				{isLoading ? (
+					<div className='loader'>
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+					</div>
+				) : isPlaying ? (
 					<div className='stopButton'></div>
 				) : (
 					<img src={play} alt='play button' />
