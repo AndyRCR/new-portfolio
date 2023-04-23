@@ -1,8 +1,8 @@
 import { useContext } from 'react'
 import Experience from '../Experience/Experience'
 import ThemeSwitch from '../ThemeSwitch/ThemeSwitch'
-import './HomeViewContainer.css'
 import { ThemeContext } from '../../context/ThemeGlobalContext'
+import './HomeViewContainer.css'
 
 const HomeViewContainer = () => {
 	const { theme } = useContext(ThemeContext)
@@ -18,10 +18,6 @@ const HomeViewContainer = () => {
 					<section className='pageBody'>
 						<div className='firstSection'>
 							<ThemeSwitch />
-						</div>
-
-						<div className='secondSection'>
-							{/* <h1>Seccion2</h1> */}
 						</div>
 					</section>
 				</div>

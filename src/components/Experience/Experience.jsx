@@ -1,11 +1,12 @@
 import * as THREE from 'three'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { OrbitControls, Plane } from '@react-three/drei'
+import { Html, OrbitControls, Plane } from '@react-three/drei'
 import { useContext, useEffect, useRef } from 'react'
 import { gsap, Power0 } from 'gsap'
 import { ThemeContext } from '../../context/ThemeGlobalContext'
 import Scene from '../Scene/Scene'
 import './Experience.css'
+import PlayMusic from '../PlayMusicMessage/PlayMusicMessage'
 
 const camera = {
 	position: [0, 1.5, 3],
@@ -13,7 +14,8 @@ const camera = {
 	right: 2,
 	top: 2,
 	bottom: -2,
-	// far: 20,
+	near: 0.1,
+	far: 20,
 	zoom: 220,
 }
 
@@ -56,6 +58,8 @@ const Experience = () => {
 				gl.setSize(window.innerWidth, window.innerHeight)
 			}
 		>
+			{/* <OrbitControls /> */}
+			{/* <axesHelper args={[5, 5, 5]} /> */}
 			<directionalLight
 				color={'#ffffff'}
 				position={[0, 5, 0]}
@@ -68,12 +72,12 @@ const Experience = () => {
 				receiveShadow
 				rotation={[-Math.PI / 2, 0, 0]}
 				position={[0, -0.1, 0]}
-				args={[10, 10]}
+				args={[1000, 1000]}
 			>
 				<meshLambertMaterial
 					ref={base}
 					reflectivity={0}
-					color={'#EAE8E0'}
+					color={'#ffffff'}
 				/>
 			</Plane>
 		</Canvas>

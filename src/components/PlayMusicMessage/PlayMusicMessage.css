@@ -1,0 +1,41 @@
+.playMusicContainer{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--light-main);
+    gap: 5px;
+    padding: 7px 10px;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    scale: 0;
+    transform-origin: bottom;
+    animation: moveUpDown 2s infinite 1s linear;
+    transition: .3s;
+}
+
+.playMusicContainer::after{
+    content: "";
+    background-color: var(--light-main);
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    bottom: -5px;
+    left: calc(50% - 5px);
+    transform: rotate(45deg);
+    transition: .3s;
+}
+
+.playMusicContainer button{
+    padding: 3px;
+    border: 1px solid black;
+    border-radius: 50%;
+}
+
+@keyframes moveUpDown {
+    0% { transform: translateY(0); }
+    25% { transform: translateY(5px); }
+    50% { transform: translateY(0); }
+    75% { transform: translateY(-5px); }
+    100% { transform: translateY(0); }
+  }

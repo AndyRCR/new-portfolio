@@ -1,12 +1,16 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { useGLTF, useAnimations } from '@react-three/drei'
+import React, { useContext, useEffect, useRef, useState } from 'react'
+import { useGLTF, useAnimations, Html } from '@react-three/drei'
 import * as THREE from 'three'
 
+import PlayMusicMessage from '../PlayMusicMessage/PlayMusicMessage'
 import Room from '../Room/Room'
 import Glass from '../Glass/Glass'
 import Screen from '../Screen/Screen'
 import Lights from '../Lights/Lights'
 import assets from '../../utils/assets'
+import { gsap } from 'gsap'
+import { ThemeContext } from '../../context/ThemeGlobalContext'
+import PlayMusicButton from '../PlayMusicButton/PlayMusicButton'
 
 const filterAnimations = (animations) => {
 	return Object.entries(animations)
@@ -15,6 +19,8 @@ const filterAnimations = (animations) => {
 }
 
 const Scene = (props) => {
+	const { theme } = useContext(ThemeContext)
+
 	const group = useRef()
 
 	const { nodes, materials, animations } = useGLTF(assets.models.room)
@@ -42,7 +48,9 @@ const Scene = (props) => {
 	}
 
 	useEffect(() => {
-		initializingModel()
+		if (group.current) {
+			initializingModel()
+		}
 
 		window.addEventListener('mousemove', lerpModel)
 
@@ -59,6 +67,24 @@ const Scene = (props) => {
 			dispose={null}
 			{...props}
 		>
+			<Html
+				rotation-y={Math.PI / 4}
+				distanceFactor={3.5}
+				position={[-0.2, 1.2, 1.2]}
+				transform
+				occlude
+			>
+				<PlayMusicMessage theme={theme} />
+			</Html>
+			<Html
+				rotation-y={Math.PI / 4}
+				distanceFactor={3.5}
+				position={[-0.2, 0.7, 1.8]}
+				transform
+				occlude
+			>
+				<PlayMusicButton />
+			</Html>
 			<Room nodes={nodes} />
 			<Glass nodes={nodes} />
 			<Screen nodes={nodes} />

@@ -1,0 +1,31 @@
+.playMusicButtonContainer{
+    cursor: pointer;
+    background-color: #3A16B3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 50%;
+    transition: .1s;
+    user-select: none;
+}
+
+.playMusicButtonContainer:hover{
+    scale: 1.1;
+}
+
+.playMusicButtonContainer:active{
+    scale: 0.9;
+}
+
+.playMusicButtonContainer img{
+    width: 15px;
+}
+
+.playMusicButton .stopButton{
+    width: 15px;
+    height: 15px;
+    background-color: #fff;
+    border-radius: 3px;
+}

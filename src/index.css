@@ -1,3 +1,9 @@
+/*Vars css*/
+:root{
+  --dark-main: #0D0D2A;
+  --light-main: #fff;
+}
+
 * {
   margin: 0;
   padding: 0;
