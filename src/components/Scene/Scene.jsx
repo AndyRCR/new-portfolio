@@ -21,6 +21,8 @@ const filterAnimations = (animations) => {
 const Scene = (props) => {
 	const { theme } = useContext(ThemeContext)
 
+	const [isPlaying, setIsPlaying] = useState(false)
+
 	const group = useRef()
 
 	const { nodes, materials, animations } = useGLTF(assets.models.room)
@@ -74,7 +76,7 @@ const Scene = (props) => {
 				transform
 				occlude
 			>
-				<PlayMusicMessage theme={theme} />
+				<PlayMusicMessage theme={theme} isPlaying={isPlaying} />
 			</Html>
 			<Html
 				rotation-y={Math.PI / 4}
@@ -83,7 +85,10 @@ const Scene = (props) => {
 				transform
 				occlude
 			>
-				<PlayMusicButton />
+				<PlayMusicButton
+					isPlaying={isPlaying}
+					setIsPlaying={setIsPlaying}
+				/>
 			</Html>
 			<Room nodes={nodes} />
 			<Glass nodes={nodes} />

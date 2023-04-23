@@ -5,8 +5,7 @@ import nocturne from '../../assets/audio/nocturne.mp3'
 import { Howl } from 'howler'
 import './PlayMusicButton.css'
 
-const PlayMusicButton = () => {
-	const [isPlaying, setIsPlaying] = useState(false)
+const PlayMusicButton = ({ isPlaying, setIsPlaying }) => {
 	const [isLoading, setIsLoading] = useState(false)
 	const [loaded, setLoaded] = useState(false)
 	const [sound, setSound] = useState(null)

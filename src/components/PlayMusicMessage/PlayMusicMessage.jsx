@@ -3,7 +3,7 @@ import { gsap } from 'gsap'
 import { ThemeContext } from '../../context/ThemeGlobalContext'
 import './PlayMusicMessage.css'
 
-const PlayMusicMessage = ({ theme }) => {
+const PlayMusicMessage = ({ theme, isPlaying }) => {
 	const showPlayMessage = () => {
 		const playMessage = document.querySelector('.playMusicContainer')
 		gsap.to(playMessage, {
@@ -19,7 +19,11 @@ const PlayMusicMessage = ({ theme }) => {
 
 	return (
 		<div className={`playMusic ${theme}`}>
-			<div className='playMusicContainer'>¿Te toco una canción? ♫</div>
+			<div className='playMusicContainer'>
+				{isPlaying
+					? 'F. Chopin - Nocturne Op9 No2'
+					: '¿Te toco una canción? ♫'}
+			</div>
 		</div>
 	)
 }
