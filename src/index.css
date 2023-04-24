@@ -13,3 +13,8 @@
 body {
   font-family: 'Open-sans', sans-serif;
 }
+
+a{
+  text-decoration: none;
+  color: #000;
+}

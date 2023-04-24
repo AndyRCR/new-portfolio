@@ -1,76 +1,42 @@
-import { useContext, useEffect, useState } from 'react'
-import { ThemeContext } from '../../context/ThemeGlobalContext'
-import play from '../../assets/images/play_white.png'
-import nocturne from '../../assets/audio/nocturne.mp3'
-import { Howl } from 'howler'
+import { AudioContext } from '../../context/AudioGlobalContext'
+import play from '../../assets/images/icons/play_white.png'
+import { useContext, useEffect } from 'react'
 import './PlayMusicButton.css'
+import { gsap } from 'gsap'
 
-const PlayMusicButton = ({ isPlaying, setIsPlaying }) => {
-	const [isLoading, setIsLoading] = useState(false)
-	const [loaded, setLoaded] = useState(false)
-	const [sound, setSound] = useState(null)
+const PlayMusicButton = (props) => {
+	const { audioIsPlaying, audioIsLoading, handleStop, handlePlay } = props
 
-	const handleAction = () => {
-		if (isLoading) return
-
-		if (isPlaying) {
-			handleStop()
-		} else {
-			handlePlay()
-		}
-	}
-
-	const handlePlay = () => {
-		if (!loaded) {
-			setIsLoading(true)
-			const newSound = new Howl({
-				src: [nocturne],
-				onplay: () => {
-					setIsLoading(false)
-					setIsPlaying(true)
-				},
-				onend: () => {
-					setIsPlaying(false)
-				},
-			})
-			setSound(newSound)
-			setLoaded(true)
-			newSound.play()
-		} else {
-			sound.play()
-			setIsPlaying(true)
-		}
-	}
-
-	const handleStop = () => {
-		if (!sound) return
-		sound.stop()
-		setIsPlaying(false)
+	const showPlayButton = () => {
+		const playButton = document.querySelector(
+			'.play-music-button-container'
+		)
+		const gsapAnimation = gsap.to(playButton, {
+			duration: 0.5,
+			delay: 1,
+			scale: 1,
+		})
 	}
 
 	useEffect(() => {
-		return () => {
-			if (sound) {
-				sound.unload()
-			}
-		}
-	}, [sound])
+		showPlayButton()
+	}, [])
 
 	return (
-		<div className='playMusicButton'>
+		<div className='play-music-button'>
 			<div
-				onClick={isPlaying ? handleStop : handlePlay}
-				className='playMusicButtonContainer'
+				onClick={audioIsPlaying ? handleStop : handlePlay}
+				className='play-music-button-container'
 			>
-				{isLoading ? (
+				{audioIsLoading ? (
 					<div className='loader'>
 						<div></div>
 						<div></div>
 						<div></div>
 						<div></div>
 					</div>
-				) : isPlaying ? (
-					<div className='stopButton'></div>
+				) : audioIsPlaying ? (
+					<div className='stop-button'></div>
 				) : (
 					<img src={play} alt='play button' />
 				)}

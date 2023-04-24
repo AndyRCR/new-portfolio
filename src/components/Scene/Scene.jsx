@@ -1,16 +1,17 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { useGLTF, useAnimations, Html } from '@react-three/drei'
 import * as THREE from 'three'
+import { gsap } from 'gsap'
+import { ThemeContext } from '../../context/ThemeGlobalContext'
+import { AudioContext } from '../../context/AudioGlobalContext'
 
-import PlayMusicMessage from '../PlayMusicMessage/PlayMusicMessage'
+import AudioPopup from '../AudioPopup/AudioPopup'
 import Room from '../Room/Room'
 import Glass from '../Glass/Glass'
 import Screen from '../Screen/Screen'
 import Lights from '../Lights/Lights'
 import assets from '../../utils/assets'
-import { gsap } from 'gsap'
-import { ThemeContext } from '../../context/ThemeGlobalContext'
-import PlayMusicButton from '../PlayMusicButton/PlayMusicButton'
+import { useFrame } from '@react-three/fiber'
 
 const filterAnimations = (animations) => {
 	return Object.entries(animations)
@@ -19,35 +20,39 @@ const filterAnimations = (animations) => {
 }
 
 const Scene = (props) => {
-	const { theme } = useContext(ThemeContext)
-
-	const [isPlaying, setIsPlaying] = useState(false)
-
 	const group = useRef()
+
+	const { theme } = useContext(ThemeContext)
 
 	const { nodes, materials, animations } = useGLTF(assets.models.room)
 	const { actions } = useAnimations(animations, group)
 
+	const [lerp, setLerp] = useState({
+		current: -Math.PI / 4,
+		target: -Math.PI / 4,
+		ease: 0.1,
+	})
+
 	const lerpModel = (e) => {
-		const x = e.clientX
-		const xRotation = (x / window.innerWidth) * 2 - 1
-		group.current.rotation.y = THREE.MathUtils.lerp(
-			group.current.rotation.y,
-			xRotation / 10 - Math.PI / 4,
-			0.1
-		)
+		const rotation =
+			((e.clientX - window.innerWidth / 2) * 2) / window.innerWidth
+		lerp.target = rotation * 0.1 - Math.PI / 4
 	}
 
 	const initializingModel = () => {
-		group.current.rotation.y = -Math.PI / 4
-
-		group.current.traverse((child) => {
-			if (child.isMesh) child.geometry.computeVertexNormals()
-		})
-
 		const rgbAnimations = filterAnimations(actions)
 		rgbAnimations.forEach((animation) => animation.play())
 	}
+
+	useFrame(() => {
+		lerp.current = gsap.utils.interpolate(
+			lerp.current,
+			lerp.target,
+			lerp.ease
+		)
+
+		group.current.rotation.y = lerp.current
+	})
 
 	useEffect(() => {
 		if (group.current) {
@@ -64,32 +69,13 @@ const Scene = (props) => {
 			name='Scene'
 			scale={[0.5, 0.5, 0.5]}
 			// position={[1.5, 0, 1]}
-			position={[0, 0, 1]}
+			rotation={[0, -Math.PI / 4, 0]}
+			position={[1.9, 0, 0]}
 			ref={group}
 			dispose={null}
 			{...props}
 		>
-			<Html
-				rotation-y={Math.PI / 4}
-				distanceFactor={3.5}
-				position={[-0.2, 1.2, 1.2]}
-				transform
-				occlude
-			>
-				<PlayMusicMessage theme={theme} isPlaying={isPlaying} />
-			</Html>
-			<Html
-				rotation-y={Math.PI / 4}
-				distanceFactor={3.5}
-				position={[-0.2, 0.7, 1.8]}
-				transform
-				occlude
-			>
-				<PlayMusicButton
-					isPlaying={isPlaying}
-					setIsPlaying={setIsPlaying}
-				/>
-			</Html>
+			<AudioPopup />
 			<Room nodes={nodes} />
 			<Glass nodes={nodes} />
 			<Screen nodes={nodes} />

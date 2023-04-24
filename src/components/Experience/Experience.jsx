@@ -1,23 +1,12 @@
 import * as THREE from 'three'
-import { Canvas, useFrame } from '@react-three/fiber'
-import { Html, OrbitControls, Plane } from '@react-three/drei'
-import { useContext, useEffect, useRef } from 'react'
+import { Canvas } from '@react-three/fiber'
+import { Html, OrthographicCamera, Plane } from '@react-three/drei'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { gsap, Power0 } from 'gsap'
 import { ThemeContext } from '../../context/ThemeGlobalContext'
 import Scene from '../Scene/Scene'
 import './Experience.css'
-import PlayMusic from '../PlayMusicMessage/PlayMusicMessage'
-
-const camera = {
-	position: [0, 1.5, 3],
-	left: -2,
-	right: 2,
-	top: 2,
-	bottom: -2,
-	near: 0.1,
-	far: 20,
-	zoom: 220,
-}
+import CameraPath from '../CameraPath/CameraPath'
 
 const renderer = {
 	antialias: true,
@@ -26,10 +15,38 @@ const renderer = {
 	pixelRatio: window.devicePixelRatio,
 }
 
+const camera = {
+	position: [0, 2, 3],
+	left: -2,
+	right: 2,
+	top: 2,
+	bottom: -2,
+	zoom: 250,
+	near: 0.1,
+	far: 50,
+}
+
 const Experience = () => {
 	const { theme, setTheme } = useContext(ThemeContext)
 
+	const [sceneCamera, setSceneCamera] = useState(() => {
+		const camera = new THREE.OrthographicCamera(
+			-window.innerWidth,
+			window.innerWidth,
+			window.innerHeight,
+			-window.innerHeight,
+			-50,
+			50
+		)
+		camera.zoom = 250
+		camera.position.set(0, 2.3, 3)
+		camera.rotation.x = -Math.PI / 6
+
+		return camera
+	})
+
 	const base = useRef()
+	const cameraRef = useRef()
 
 	const handleColor = () => {
 		if (base.current) {
@@ -44,22 +61,26 @@ const Experience = () => {
 	}
 
 	useEffect(() => {
+		if (cameraRef.current) {
+			// cameraRef.current.lookAt(0, 6, 0)
+			// cameraRef.current.position(0, 2, 3)
+			// cameraRef.current.rotation.y  = -Math.PI / 6
+		}
+
 		handleColor()
 	}, [theme])
 
 	return (
 		<Canvas
-			className='experienceCanvas'
+			className='experience-canvas'
+			gl={renderer}
+			camera={sceneCamera}
+			onCreated={({ gl }) => {
+				gl.setSize(window.innerWidth, window.innerHeight)
+			}}
 			orthographic
 			shadows
-			camera={camera}
-			gl={renderer}
-			onCreated={({ gl }) =>
-				gl.setSize(window.innerWidth, window.innerHeight)
-			}
 		>
-			{/* <OrbitControls /> */}
-			{/* <axesHelper args={[5, 5, 5]} /> */}
 			<directionalLight
 				color={'#ffffff'}
 				position={[0, 5, 0]}
@@ -67,17 +88,19 @@ const Experience = () => {
 				shadow-mapSize-height={2048}
 				castShadow
 			/>
+			{/* <CameraPath /> */}
 			<Scene />
 			<Plane
 				receiveShadow
 				rotation={[-Math.PI / 2, 0, 0]}
 				position={[0, -0.1, 0]}
-				args={[1000, 1000]}
+				args={[100, 100]}
 			>
 				<meshLambertMaterial
 					ref={base}
 					reflectivity={0}
 					color={'#ffffff'}
+					side={THREE.DoubleSide}
 				/>
 			</Plane>
 		</Canvas>

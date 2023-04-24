@@ -1,0 +1,25 @@
+.button{
+    background: none;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    min-width: 220px;
+    min-height: 50px;
+    border-radius: 10px;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: .3s linear;
+    pointer-events: auto;
+}
+
+.button:active{
+    outline: none;
+    scale: .95;
+}
+
+.button-main{
+    border: 2px solid black;
+}

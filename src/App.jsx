@@ -5,11 +5,15 @@ import Room from './components/Room/Room'
 import './App.css'
 import ThemeGlobalContext from './context/ThemeGlobalContext'
 import Rutas from './routes/Rutas'
+import AudioGlobalContext from './context/AudioGlobalContext'
+import SizesGlobalContext from './context/SizesGlobalContext'
 
 function App() {
 	return (
 		<ThemeGlobalContext>
-			<Rutas />
+			<AudioGlobalContext>
+				<Rutas />
+			</AudioGlobalContext>
 		</ThemeGlobalContext>
 	)
 }

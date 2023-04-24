@@ -1,21 +1,22 @@
-.themeSwitch{
+.theme-switch{
     position: absolute;
     top: 30px;
     right: 30px;
     pointer-events: auto;
+    z-index: 1000;
 }
 
-.themeSwitch.dark button{
+.theme-switch.dark button{
     border: 1px solid white;
     color: white;
 }
 
-.themeSwitch.light button{
+.theme-switch.light button{
     border: 1px solid black;
     color: black;
 }
 
-.themeSwitch button{
+.theme-switch button{
     border-radius: 15px;
     padding: 5px 10px;
     transition: .3s;

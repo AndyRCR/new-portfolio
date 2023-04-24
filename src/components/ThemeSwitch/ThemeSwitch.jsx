@@ -8,7 +8,7 @@ const ThemeSwitch = () => {
 	const handleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light')
 
 	return (
-		<div className={`themeSwitch ${theme}`}>
+		<div className={`theme-switch ${theme}`}>
 			<button onClick={handleTheme}>Cambiar tema</button>
 		</div>
 	)
