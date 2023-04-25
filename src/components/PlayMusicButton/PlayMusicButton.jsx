@@ -1,11 +1,11 @@
 import { AudioContext } from '../../context/AudioGlobalContext'
 import play from '../../assets/images/icons/play_white.png'
 import { useContext, useEffect } from 'react'
-import './PlayMusicButton.css'
 import { gsap } from 'gsap'
+import './PlayMusicButton.css'
 
 const PlayMusicButton = (props) => {
-	const { audioIsPlaying, audioIsLoading, handleStop, handlePlay } = props
+	const { audioIsPlaying, audioIsLoading } = props
 
 	const showPlayButton = () => {
 		const playButton = document.querySelector(
@@ -24,10 +24,7 @@ const PlayMusicButton = (props) => {
 
 	return (
 		<div className='play-music-button'>
-			<div
-				onClick={audioIsPlaying ? handleStop : handlePlay}
-				className='play-music-button-container'
-			>
+			<div className='play-music-button-container'>
 				{audioIsLoading ? (
 					<div className='loader'>
 						<div></div>

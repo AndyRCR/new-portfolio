@@ -17,7 +17,9 @@
 }
 
 .theme-switch button{
+    cursor: pointer;
     border-radius: 15px;
     padding: 5px 10px;
     transition: .3s;
+    background-color: transparent;
 }

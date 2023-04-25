@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 
-import room from '../assets/models/room.glb'
+import room from '../assets/models/room2.glb'
 
 import videoBlender from '../assets/videos/makingroom_compressed.mp4'
 
@@ -55,6 +55,7 @@ const createVideoTexture = (videoSrc) => {
 
     const videoTexture = new THREE.VideoTexture(video)
     videoTexture.encoding = THREE.sRGBEncoding
+    videoTexture.flipY = false
     // videoTexture.minFilter = THREE.LinearFilter
     const material = new THREE.MeshBasicMaterial({ map: videoTexture })
 

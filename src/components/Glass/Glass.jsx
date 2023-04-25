@@ -1,12 +1,19 @@
 import React from 'react'
 import assets from '../../utils/assets'
-import { MeshBasicMaterial } from 'three'
+import { MeshBasicMaterial, DoubleSide } from 'three'
 
 const Glass = ({ nodes }) => {
 	const glassMaterial = new MeshBasicMaterial({
 		transparent: true,
 		opacity: 0.4,
 		color: 'black',
+	})
+
+	const opaqueGlassMaterial = new MeshBasicMaterial({
+		transparent: true,
+		opacity: 0.2,
+		color: 'black',
+		side: DoubleSide,
 	})
 
 	return (
@@ -20,8 +27,8 @@ const Glass = ({ nodes }) => {
 			<mesh
 				name='vidrioCPU'
 				geometry={nodes.vidrioCPU.geometry}
-				material={glassMaterial}
-				position={[-0.63, 0.73, -1.46]}
+				material={opaqueGlassMaterial}
+				position={[-0.529, 0.98, -1.483]}
 			/>
 		</React.Fragment>
 	)

@@ -1,12 +1,16 @@
 import { Link } from 'react-router-dom'
+import { useContext } from 'react'
+import { ThemeContext } from '../../context/ThemeGlobalContext'
 import './Navbar.css'
 
 const Navbar = () => {
+	const { theme } = useContext(ThemeContext)
+
 	return (
-		<nav className='navbar'>
+		<nav className={`navbar ${theme}`}>
 			<div className='navbar-container'>
 				<div className='navbar-logo'>
-					<Link to={'/'}>Logo</Link>
+					<Link to={'/'}>Navbar</Link>
 					<p className='navbar-title'></p>
 				</div>
 				<div className='navbar-menu'>

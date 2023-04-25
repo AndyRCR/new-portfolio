@@ -1,6 +1,7 @@
 .view{
-    width: calc(100% - 150px);
-    height: 100vh;
+    width: 100%;
+    /* height: 100vh; */
+    margin-left: 150px;
 }
 
 .view > div{
@@ -9,10 +10,16 @@
     height: 100%;
 }
 
-.view > div.dark{
+/* .view > div.dark{
     background-color: #0D0D2A;
 }
 
 .view > div.light{
     background-color: #ffffff;
+} */
+
+@media (max-width: 1250px) {
+    .view{
+        margin-left: 0;
+    }
 }

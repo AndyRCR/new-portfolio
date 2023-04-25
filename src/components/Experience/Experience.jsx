@@ -5,8 +5,8 @@ import { useContext, useEffect, useRef, useState } from 'react'
 import { gsap, Power0 } from 'gsap'
 import { ThemeContext } from '../../context/ThemeGlobalContext'
 import Scene from '../Scene/Scene'
-import './Experience.css'
 import CameraPath from '../CameraPath/CameraPath'
+import './Experience.css'
 
 const renderer = {
 	antialias: true,
@@ -75,9 +75,10 @@ const Experience = () => {
 			className='experience-canvas'
 			gl={renderer}
 			camera={sceneCamera}
-			onCreated={({ gl }) => {
-				gl.setSize(window.innerWidth, window.innerHeight)
-			}}
+			// onCreated={({ gl }) => {
+			// 	gl.setSize(window.innerWidth, window.innerHeight)
+			// }}
+			// onResize={() => window.dispatchEvent(new Event('resize'))}
 			orthographic
 			shadows
 		>

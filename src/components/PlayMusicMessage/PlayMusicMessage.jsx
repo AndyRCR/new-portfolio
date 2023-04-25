@@ -24,7 +24,7 @@ const PlayMusicMessage = ({ audioIsPlaying }) => {
 			<div className='play-music-message-container'>
 				{audioIsPlaying
 					? 'F. Chopin - Nocturne Op9 No2 ♫'
-					: '¿Te toco una canción? 😁'}
+					: 'I play you a song? 😁'}
 			</div>
 		</div>
 	)
