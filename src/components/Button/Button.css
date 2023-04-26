@@ -12,7 +12,6 @@
     align-items: center;
     cursor: pointer;
     transition: .3s linear;
-    pointer-events: auto;
     transition: .3s;
 }
 

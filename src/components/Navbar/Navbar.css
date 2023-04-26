@@ -5,6 +5,7 @@
     z-index: 100;
     padding: 10px;
     transition: .3s;
+    pointer-events: auto;
 }
 
 .navbar.dark{

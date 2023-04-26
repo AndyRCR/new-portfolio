@@ -7,14 +7,17 @@ import ThemeGlobalContext from './context/ThemeGlobalContext'
 import Rutas from './routes/Rutas'
 import AudioGlobalContext from './context/AudioGlobalContext'
 import SizesGlobalContext from './context/SizesGlobalContext'
+import CameraGlobalContext from './context/CameraGlobalContext'
 
 function App() {
 	return (
-		<ThemeGlobalContext>
-			<AudioGlobalContext>
-				<Rutas />
-			</AudioGlobalContext>
-		</ThemeGlobalContext>
+		<CameraGlobalContext>
+			<ThemeGlobalContext>
+				<AudioGlobalContext>
+					<Rutas />
+				</AudioGlobalContext>
+			</ThemeGlobalContext>
+		</CameraGlobalContext>
 	)
 }
 

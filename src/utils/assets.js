@@ -1,9 +1,11 @@
 import * as THREE from 'three'
 
-import room from '../assets/models/room2.glb'
+import room from '../assets/models/room.glb'
+import screenmodel from '../assets/models/screenmodel2.glb'
 
 import videoBlender from '../assets/videos/makingroom_compressed.mp4'
 
+import screenbakedday from '../assets/textures/screenbakedday.jpg'
 import bakedday from '../assets/textures/bakedday.jpg'
 import bakednight from '../assets/textures/bakednight.jpg'
 import curtainday from '../assets/textures/curtainday.jpg'
@@ -73,6 +75,7 @@ const createShaderTexture = (vertexShader, fragmentShader) => {
 
 export default {
     textures: {
+        screenBakedTexture: createThemeTexture(screenbakedday, screenbakedday),
         bakedTexture: createThemeTexture(bakedday, bakednight),
         curtainTexture: createThemeTexture(curtainday, curtainnight),
         floorTexture: createThemeTexture(floorday, floornight, true),
@@ -85,5 +88,5 @@ export default {
     video: {
         videoBlender: createVideoTexture(videoBlender),
     },
-    models: { room }
+    models: { room, screenmodel }
 }

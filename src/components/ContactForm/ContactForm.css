@@ -1,0 +1,15 @@
+.contactForm{
+    padding: 20px;
+    width: 876px;
+    height: 478px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    background-color: #fff;
+    color: #000;
+    pointer-events: auto;
+    /* visibility: hidden; */
+}
+
+.contactForm .scroll{
+    height: 3000px;
+}

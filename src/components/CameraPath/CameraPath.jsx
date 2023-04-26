@@ -18,7 +18,7 @@ const CameraPath = () => {
 	return (
 		<React.Fragment>
 			{/* <OrbitControls /> */}
-			{/* <axesHelper args={[5]} /> */}
+			<axesHelper args={[5]} />
 			{/* <PerspectiveCamera
 				makeDefault
 				ref={cameraRef}
