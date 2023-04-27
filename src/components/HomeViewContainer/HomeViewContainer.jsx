@@ -1,8 +1,8 @@
 import { useContext, useEffect } from 'react'
 import Experience from '../Experience/Experience'
 import { ThemeContext } from '../../context/ThemeGlobalContext'
-import Button from '../Button/Button'
 import { AudioContext } from '../../context/AudioGlobalContext'
+import Button from '../Button/Button'
 import './HomeViewContainer.css'
 
 const HomeViewContainer = () => {
@@ -108,11 +108,9 @@ const HomeViewContainer = () => {
 
 					<div className='third-move section-margin'></div>
 
-					<section className='third-section center'>
+					<section className='third-section last-section right'>
 						<h1 className='section-title'>Projects</h1>
 					</section>
-
-					<div className='fourth-move last-margin'></div>
 				</div>
 			</div>
 		</div>

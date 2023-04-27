@@ -1,7 +1,8 @@
 import * as THREE from 'three'
 
 import room from '../assets/models/room.glb'
-import screenmodel from '../assets/models/screenmodel2.glb'
+import screenmodel from '../assets/models/screenmodel.glb'
+import catmodel from '../assets/models/catmodel.glb'
 
 import videoBlender from '../assets/videos/makingroom_compressed.mp4'
 
@@ -88,5 +89,5 @@ export default {
     video: {
         videoBlender: createVideoTexture(videoBlender),
     },
-    models: { room, screenmodel }
+    models: { room, screenmodel, catmodel }
 }

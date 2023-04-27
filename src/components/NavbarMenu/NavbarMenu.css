@@ -1,0 +1,30 @@
+.navbar-menu li{
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    font-weight: 700;
+    height: 70px;
+    justify-content: center;
+    transition: .3s;
+}
+
+.navbar-menu.light li{
+    border-top: 1px solid #d8d8d8;
+}
+
+.navbar-menu.light li:nth-last-child(1){
+    border-bottom: 1px solid #d8d8d8;
+}
+
+.navbar-menu.dark li{
+    border-top: 1px solid var(--dark-section);
+    color: #fff;
+}
+
+.navbar-menu li:hover{
+    color: #08fdd8;
+}
+
+.navbar-menu.dark li:nth-last-child(1){
+    border-bottom: 1px solid var(--dark-section);
+}

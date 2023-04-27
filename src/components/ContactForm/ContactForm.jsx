@@ -1,19 +1,18 @@
 import { useEffect } from 'react'
 import './ContactForm.css'
 
-const ContactForm = () => {
+const ContactForm = ({ display }) => {
 	const handleMouseIn = () => {
 		const view = document.querySelector('.view')
-		console.log(view)
+		// console.log(view)
 	}
 
-	// useEffect(() => {
-	// 	const form = document.querySelector('.contactForm')
-	// 	form.style.display = 'block'
-	// })
-
 	return (
-		<div className='contactForm' onMouseEnter={handleMouseIn}>
+		<div
+			className='contactForm'
+			onMouseEnter={handleMouseIn}
+			style={{ display }}
+		>
 			<h1>Contact Form</h1>
 			<div className='scroll'>Scroll area</div>
 		</div>

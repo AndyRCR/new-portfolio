@@ -1,22 +1,65 @@
 .navbar{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     width: 150px;
     height: 100vh;
     position: fixed;
-    z-index: 100;
-    padding: 10px;
-    transition: .3s;
     pointer-events: auto;
+    z-index: 100;
+    transition: .3s;
 }
 
 .navbar.dark{
+    border-right: 1px solid var(--dark-section);
     background-color: var(--dark-secondary);
-    /* box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px; */
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
 }
 
 .navbar.light{
+    border-right: 1px solid #d8d8d8;
     background-color: var(--light-secondary);
-    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+}
+
+.navbar .navbar-logo{
+    width: 150px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+    color: #000;
+    user-select: none;
+    transition: .3s;
+}
+
+.navbar.dark .navbar-logo{
+    border-right: 1px solid var(--dark-section);
+    background-color: var(--dark-main);
+}
+
+.navbar.light .navbar-logo{
+    border-right: 1px solid #d8d8d8;
+    background-color: var(--light-main);
+}
+
+.navbar .logo{
+    width: 100%;
+    transition: .3s;
+}
+
+.navbar.dark .logo{
+    filter: invert(1);
+}
+
+.navbar .navbar-title{
+    padding-bottom: 20px;
+    transition: .3s;
+}
+
+.navbar.dark .navbar-title{
+    color: #fff;
+}
+
+.navbar.light .navbar-title{
+    color: #000;
 }
 
 @media (max-width: 1250px) {

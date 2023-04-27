@@ -1,8 +1,8 @@
 import * as THREE from 'three'
 import { Canvas } from '@react-three/fiber'
-import { Html, Plane } from '@react-three/drei'
+import { Plane } from '@react-three/drei'
 import { useContext, useEffect, useRef, useState } from 'react'
-import { gsap, Power0 } from 'gsap'
+import { gsap } from 'gsap'
 import { ThemeContext } from '../../context/ThemeGlobalContext'
 import Scene from '../Scene/Scene'
 import CameraPath from '../CameraPath/CameraPath'
@@ -23,11 +23,10 @@ const Experience = () => {
 	const handleColor = () => {
 		if (base.current) {
 			gsap.to(base.current.color, {
-				ease: Power0.easeNone,
 				duration: 0.3,
-				r: theme === 'light' ? 1 : 1 / 255,
-				g: theme === 'light' ? 1 : 1 / 255,
-				b: theme === 'light' ? 1 : 6 / 255,
+				r: theme === 'light' ? 1 : 3 / 255,
+				g: theme === 'light' ? 1 : 3 / 255,
+				b: theme === 'light' ? 1 : 21 / 255,
 			})
 		}
 	}
@@ -55,7 +54,7 @@ const Experience = () => {
 				<meshLambertMaterial
 					ref={base}
 					reflectivity={0}
-					color={'#ffffff'}
+					color={'#fcfcfc'}
 				/>
 			</Plane>
 		</Canvas>

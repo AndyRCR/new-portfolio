@@ -1,11 +1,11 @@
 /*Vars css*/
 :root{
   --black: #222222;
-  --dark-main: #0D0D2A;
-  --dark-secondary: #06061B;
-  --dark-section: #15156C;
+  --dark-main: #06061B;
+  --dark-secondary: #0D0D2A;
+  --dark-section: #0f0f52;
   --light-main: #fff;
-  --light-secondary: #4a65be;
+  --light-secondary: #f9f9f9;
   --light-section: #c6edff;
 }
 
@@ -18,10 +18,19 @@
 body {
   font-family: 'Open-sans', sans-serif;
   overflow-x: hidden;
-  color: var(--dark-secondary);
 }
 
 a{
   text-decoration: none;
   color: #000;
 }
+
+ul{
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+}
+
+/* ::-webkit-scrollbar{
+  display: none;
+} */

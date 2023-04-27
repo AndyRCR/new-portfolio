@@ -44,32 +44,28 @@
     width: 100%;
 }
 
-.last-margin{
-    width: 100%;
-    height: 100vh;
-}
-
 .section{
     padding: 1000px 4%;
     margin: 0;
     transition: .3s;
 }
 
-.home-view-container.light .section, .home-view-container.light .center{
+.last-section{
+    padding: 2500px 4%;
+    margin: 0;
+    transition: .3s;
+}
+
+.home-view-container.light .section, .home-view-container.light .last-section{
     background-color: var(--light-section);
 }
 
-.home-view-container.dark .section, .home-view-container.dark .center{
+.home-view-container.dark .section, .home-view-container.dark .last-section{
     background-color: var(--dark-section);
 }
 
 .left, .right{
     width: 50%;
-}
-
-.center{
-    width: 100%;
-    height: 200vh;
 }
 
 .left{
@@ -124,12 +120,21 @@
 /*Fix play button*/
 
 .fix-button{
-    z-index: 100;
+    z-index: 50;
     position: absolute;
     cursor: pointer;
-    width: 28px;
-	height: 24px;
-    border-radius: 12px;
+    width: 39px;
+	height: 35px;
+    border-radius: 29px;
+    transform-origin: top left;
+}
+
+.fix-button:hover{
+    scale: 1.2;
+}
+
+.fix-button:active{
+    scale: 1;
 }
 
 @media (max-width: 1500px) {

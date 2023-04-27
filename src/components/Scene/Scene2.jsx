@@ -14,14 +14,18 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger.js'
 import { ThemeContext } from '../../context/ThemeGlobalContext'
 import { AudioContext } from '../../context/AudioGlobalContext'
 import { CameraContext } from '../../context/CameraGlobalContext'
-import { Cat } from '../Cat/Cat'
-
 import assets from '../../utils/assets'
+
 import AudioPopup from '../AudioPopup/AudioPopup'
 import Room from '../Room/Room'
 import Glass from '../Glass/Glass'
 import Screen from '../Screen/Screen'
 import Lights from '../Lights/Lights'
+import ScreenRoom from '../Room/ScreenRoom'
+import ScreenGlass from '../Glass/ScreenGlass'
+import ScreenLights from '../Lights/ScreenLights'
+import ScreenForm from '../Screen/ScreenForm'
+import ContactForm from '../ContactForm/ContactForm'
 
 const filterAnimations = (animations) => {
 	return Object.entries(animations)
@@ -30,16 +34,23 @@ const filterAnimations = (animations) => {
 }
 
 const Scene = (props) => {
+	const renderer = useThree((state) => state.gl.domElement)
 	const { viewport } = useThree()
 	const { theme, modelLoaded, setModelLoaded } = useContext(ThemeContext)
 
-	const ortCamera = useRef()
+	const [isOrthographicCamera, setIsOrthographicCamera] = useState(true)
+
+	const meshRef = useRef()
+	const htmlRef = useRef()
+
 	const group = useRef()
 	const model = useGLTF(assets.models.room)
+	const ortCamera = useRef()
+	const perspCamera = useRef()
 
-	const cat = useRef()
-	const catmodel = useGLTF(assets.models.catmodel)
-	const { actions } = useAnimations(catmodel.animations, cat)
+	const screenGroup = useRef()
+	const screenModel = useGLTF(assets.models.screenmodel)
+	const { actions } = useAnimations(screenModel.animations, screenGroup)
 
 	const [lerp, setLerp] = useState({
 		current: -Math.PI / 4,
@@ -51,6 +62,17 @@ const Scene = (props) => {
 		const rotation =
 			((e.clientX - window.innerWidth / 2) * 2) / window.innerWidth
 		lerp.target = rotation * 0.1 - Math.PI / 4
+	}
+
+	const lerpCamera = (e) => {
+		const x = e.clientX
+		const rotation = ((x - window.innerWidth / 2) * 2) / window.innerWidth
+		ortCamera.current.rotation.y = rotation * -0.025
+	}
+
+	const playAnimations = () => {
+		const rgbAnimations = filterAnimations(actions)
+		rgbAnimations.forEach((animation) => animation.play())
 	}
 
 	const initializingFirstModel = () => {
@@ -71,8 +93,13 @@ const Scene = (props) => {
 		group.current.scale.set(scale, scale, scale)
 	}
 
+	const initializingSecondModel = () => {
+		screenGroup.current.position.z = 2
+	}
+
 	const setScrollTrigger = () => {
 		initializingFirstModel()
+		initializingSecondModel()
 
 		GSAP.registerPlugin(ScrollTrigger)
 		ScrollTrigger.matchMedia({
@@ -97,6 +124,7 @@ const Scene = (props) => {
 				})
 
 				//Second Section
+				const fixButton = document.querySelector('.fix-button')
 				const secondMovieTimeLine = new GSAP.timeline({
 					scrollTrigger: {
 						scroller: '.page-wrapper',
@@ -111,7 +139,7 @@ const Scene = (props) => {
 					group.current.position,
 					{
 						x: () => {
-							return window.innerWidth * 0.0009
+							return window.innerWidth * 0.0008
 						},
 						z: () => {
 							return window.innerHeight * 0.001
@@ -122,9 +150,23 @@ const Scene = (props) => {
 				secondMovieTimeLine.to(
 					group.current.scale,
 					{
-						x: 0.7,
-						y: 0.7,
-						z: 0.7,
+						x: 0.8,
+						y: 0.8,
+						z: 0.8,
+					},
+					'same'
+				)
+				secondMovieTimeLine.to(
+					fixButton,
+					{
+						scale: group.current.scale.x * 1.8,
+					},
+					'same'
+				)
+				secondMovieTimeLine.to(
+					perspCamera.current.position,
+					{
+						x: perspCamera.current.position.x - 0.5,
 					},
 					'same'
 				)
@@ -135,30 +177,25 @@ const Scene = (props) => {
 						scroller: '.page-wrapper',
 						trigger: '.third-move',
 						start: 'top top',
-						end: `bottom bottom`,
+						end: `bottom -20%`,
 						scrub: 0.6,
 						invalidateOnRefresh: true,
+						onLeave: () => setIsOrthographicCamera(false),
+						onEnterBack: () => setIsOrthographicCamera(true),
 					},
 				})
 
 				thirdMovieTimeLine.to(
 					group.current.position,
-					{
-						x: () => {
-							return -window.innerWidth * 0.001
-						},
-						z: () => {
-							return 6
-						},
-					},
+					{ x: 0, z: 4 },
 					'same'
 				)
 				thirdMovieTimeLine.to(
 					group.current.scale,
 					{
-						x: 2,
-						y: 2,
-						z: 2,
+						x: 1.6,
+						y: 1.6,
+						z: 1.6,
 					},
 					'same'
 				)
@@ -169,52 +206,79 @@ const Scene = (props) => {
 	}
 
 	useFrame(() => {
-		if (group.current) {
-			const fixButton = document.querySelector('.fix-button')
+		const fixButton = document.querySelector('.fix-button')
+
+		lerp.current = GSAP.utils.interpolate(
+			lerp.current,
+			lerp.target,
+			lerp.ease
+		)
+
+		if (isOrthographicCamera) {
+			group.current.rotation.y = lerp.current
+
 			const playButton = document.querySelector('.play-music-button')
+			// fixButton.style.visibility = 'visible'
+
 			const top = playButton?.getBoundingClientRect().top
 			const left = playButton?.getBoundingClientRect().left
-			fixButton.style.top = `${top}px`
-			fixButton.style.left = `${left}px`
-			fixButton.style.width = `${
-				playButton?.getBoundingClientRect().width
-			}px`
-			fixButton.style.height = `${
-				playButton?.getBoundingClientRect().height
-			}px`
-
-			lerp.current = GSAP.utils.interpolate(
-				lerp.current,
-				lerp.target,
-				lerp.ease
-			)
-
-			group.current.rotation.y = lerp.current
+			// fixButton.style.top = `${top}px`
+			// fixButton.style.left = `${left}px`
+		} else {
+			// ortCamera.current.rotation.y = -(lerp.current + Math.PI / 4) * 0.4
+			fixButton.style.visibility = 'hidden'
 		}
 	})
 
 	useEffect(() => {
-		if (group.current) {
+		if (group.current && screenGroup.current) {
 			setModelLoaded(true)
 			setScrollTrigger()
+			playAnimations()
 			window.addEventListener('mousemove', lerpModel)
+			window.addEventListener('mousemove', lerpCamera)
 		}
 		return () => {
 			window.removeEventListener('mousemove', lerpModel)
+			window.removeEventListener('mousemove', lerpCamera)
 		}
 	}, [])
 
 	useEffect(() => {
-		if (group.current) {
+		if (group.current && screenGroup.current) {
 			initializingFirstModel()
+			initializingSecondModel()
 		}
 	}, [viewport.width, viewport.height])
+
+	useEffect(() => {
+		if (meshRef.current) {
+			htmlRef.current.position.set(
+				meshRef.current.position.x,
+				meshRef.current.position.y,
+				meshRef.current.position.z
+			)
+		}
+	}, [])
+
+	useEffect(() => {
+		if (htmlRef.current) {
+			const container = document.querySelector('.fourth-move.last-margin')
+			console.log(htmlRef.current)
+			container.appendChild(htmlRef.current)
+			renderer.autoClear = false
+		}
+		return () => {
+			container.removeChild(htmlRef.current)
+			renderer.autoClear = true
+		}
+	}, [renderer])
 
 	return (
 		<>
 			<OrthographicCamera
-				ref={ortCamera}
-				makeDefault
+				ref={perspCamera}
+				makeDefault={isOrthographicCamera}
 				left={-2}
 				right={2}
 				top={2}
@@ -225,7 +289,20 @@ const Scene = (props) => {
 				rotation={[-Math.PI / 6, 0, 0]}
 				position={[0, 2, 3]}
 			/>
+
+			<PerspectiveCamera
+				ref={ortCamera}
+				makeDefault={!isOrthographicCamera}
+				resolution={[window.innerWidth, window.innerHeight]}
+				near={0.1}
+				far={1000}
+				fov={75}
+				position={[-1.2, 1.31, 1.15]}
+				rotation={[-Math.PI / 16, 0, 0]}
+			/>
+
 			<group
+				visible={isOrthographicCamera}
 				name='Scene'
 				rotation={[0, -Math.PI / 4, 0]}
 				ref={group}
@@ -236,13 +313,41 @@ const Scene = (props) => {
 				<Glass nodes={model.nodes} />
 				<Screen nodes={model.nodes} />
 				<Lights nodes={model.nodes} />
-				<Cat />
+			</group>
+
+			<group
+				visible={!isOrthographicCamera}
+				ref={screenGroup}
+				name='screenScene'
+			>
+				<ScreenRoom nodes={screenModel.nodes} />
+				<ScreenGlass nodes={screenModel.nodes} />
+				<mesh
+					name='monitoInteractivo'
+					scale={[1.008, 1.008, 1]}
+					geometry={screenModel.nodes.monitoInteractivo.geometry}
+					material={screenModel.nodes.monitoInteractivo.material}
+					position={[-1.2, 1.23, -1.37]}
+				/>
+				<Html
+					ref={htmlRef}
+					rotation-y={2 * Math.PI}
+					distanceFactor={0.4}
+					position={[-1.2, 1.23, -1.37 + 0.003]}
+					transform
+					center
+				>
+					<ContactForm
+						display={isOrthographicCamera ? 'none' : 'block'}
+					/>
+				</Html>
+				<ScreenLights nodes={screenModel.nodes} />
 			</group>
 		</>
 	)
 }
 
 useGLTF.preload(assets.models.room)
-useGLTF.preload(assets.models.catmodel)
+useGLTF.preload(assets.models.screenmodel)
 
 export default Scene

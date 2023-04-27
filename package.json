@@ -12,7 +12,6 @@
     "@react-three/drei": "^9.65.4",
     "@react-three/fiber": "^8.12.2",
     "events": "^3.3.0",
-    "glsl-blend": "^1.0.3",
     "gsap": "^3.11.5",
     "howler": "^2.2.3",
     "react": "^18.2.0",
