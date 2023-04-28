@@ -14,8 +14,7 @@
     transition: .3s;
 }
 
-.play-music-message-container::after{
-    content: "";
+.play-music-pick{
     background-color: var(--light-main);
     position: absolute;
     width: 10px;

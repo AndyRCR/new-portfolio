@@ -9,7 +9,9 @@ const ThemeSwitch = () => {
 
 	return (
 		<div className={`theme-switch ${theme}`}>
-			<button onClick={handleTheme}>Cambiar tema</button>
+			<button className='theme-switch-button' onClick={handleTheme}>
+				Cambiar tema
+			</button>
 		</div>
 	)
 }

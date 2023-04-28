@@ -4,9 +4,7 @@ import { useContext, useEffect } from 'react'
 import { gsap } from 'gsap'
 import './PlayMusicButton.css'
 
-const PlayMusicButton = (props) => {
-	const { audioIsPlaying, audioIsLoading } = props
-
+const PlayMusicButton = ({ audioIsPlaying, audioIsLoading }) => {
 	const showPlayButton = () => {
 		const playButton = document.querySelector(
 			'.play-music-button-container'

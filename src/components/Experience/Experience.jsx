@@ -1,13 +1,19 @@
 import * as THREE from 'three'
-import { Canvas } from '@react-three/fiber'
+import { Canvas, useThree } from '@react-three/fiber'
+import React, {
+	useContext,
+	useEffect,
+	useLayoutEffect,
+	useRef,
+	useState,
+} from 'react'
+import { useLocation } from 'react-router-dom'
 import { Plane } from '@react-three/drei'
-import { useContext, useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ThemeContext } from '../../context/ThemeGlobalContext'
 import Scene from '../Scene/Scene'
-import CameraPath from '../CameraPath/CameraPath'
+import Scene2 from '../Scene/Scene2'
 import './Experience.css'
-import { CameraContext } from '../../context/CameraGlobalContext'
 
 const renderer = {
 	antialias: true,
@@ -17,8 +23,10 @@ const renderer = {
 }
 
 const Experience = () => {
-	const { theme, setTheme } = useContext(ThemeContext)
+	const { theme } = useContext(ThemeContext)
 	const base = useRef()
+
+	const location = useLocation()
 
 	const handleColor = () => {
 		if (base.current) {
@@ -33,7 +41,7 @@ const Experience = () => {
 
 	useEffect(() => {
 		handleColor()
-	}, [theme])
+	}, [theme, location.pathname])
 
 	return (
 		<Canvas className='experience-canvas' gl={renderer} shadows>
@@ -44,19 +52,26 @@ const Experience = () => {
 				shadow-mapSize-height={2048}
 				castShadow
 			/>
-			<Scene />
-			<Plane
-				receiveShadow
-				rotation={[-Math.PI / 2, 0, 0]}
-				position={[0, -0.1, 0]}
-				args={[100, 100]}
-			>
-				<meshLambertMaterial
-					ref={base}
-					reflectivity={0}
-					color={'#fcfcfc'}
-				/>
-			</Plane>
+
+			{location.pathname === '/' ? (
+				<React.Fragment>
+					<Scene />
+					<Plane
+						receiveShadow
+						rotation={[-Math.PI / 2, 0, 0]}
+						position={[0, -0.1, 0]}
+						args={[100, 100]}
+					>
+						<meshLambertMaterial
+							ref={base}
+							reflectivity={0}
+							color={theme === 'light' ? '#ffffff' : '#fcfcfc'}
+						/>
+					</Plane>
+				</React.Fragment>
+			) : (
+				<Scene2 />
+			)}
 		</Canvas>
 	)
 }

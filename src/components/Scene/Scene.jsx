@@ -13,7 +13,6 @@ import { useFrame, useThree } from '@react-three/fiber'
 import { ScrollTrigger } from 'gsap/ScrollTrigger.js'
 import { ThemeContext } from '../../context/ThemeGlobalContext'
 import { AudioContext } from '../../context/AudioGlobalContext'
-import { CameraContext } from '../../context/CameraGlobalContext'
 import { Cat } from '../Cat/Cat'
 
 import assets from '../../utils/assets'
@@ -22,24 +21,25 @@ import Room from '../Room/Room'
 import Glass from '../Glass/Glass'
 import Screen from '../Screen/Screen'
 import Lights from '../Lights/Lights'
-
-const filterAnimations = (animations) => {
-	return Object.entries(animations)
-		.filter(([name, action]) => name.includes('Aro'))
-		.map(([_, action]) => action)
-}
+import PlayMusicMessage from '../PlayMusicMessage/PlayMusicMessage'
+import PlayMusicButton from '../PlayMusicButton/PlayMusicButton'
 
 const Scene = (props) => {
-	const { viewport } = useThree()
-	const { theme, modelLoaded, setModelLoaded } = useContext(ThemeContext)
+	const { viewport, gl } = useThree()
+	const { theme, setTheme, modelLoaded, setModelLoaded } =
+		useContext(ThemeContext)
+	const { audioIsPlaying, audioIsLoading, handleStop, handlePlay } =
+		useContext(AudioContext)
 
 	const ortCamera = useRef()
+	const musicButton = useRef()
+	const musicMessage = useRef()
+
 	const group = useRef()
 	const model = useGLTF(assets.models.room)
 
 	const cat = useRef()
 	const catmodel = useGLTF(assets.models.catmodel)
-	const { actions } = useAnimations(catmodel.animations, cat)
 
 	const [lerp, setLerp] = useState({
 		current: -Math.PI / 4,
@@ -72,8 +72,6 @@ const Scene = (props) => {
 	}
 
 	const setScrollTrigger = () => {
-		initializingFirstModel()
-
 		GSAP.registerPlugin(ScrollTrigger)
 		ScrollTrigger.matchMedia({
 			//Desktop
@@ -164,7 +162,90 @@ const Scene = (props) => {
 				)
 			},
 			//Mobile
-			'(max-width: 1000px)': () => {},
+			'(max-width: 1000px)': () => {
+				//First Section
+				const firstMovieTimeLine = new GSAP.timeline({
+					scrollTrigger: {
+						scroller: '.page-wrapper',
+						trigger: '.first-move',
+						start: 'top top',
+						end: 'bottom bottom',
+						scrub: 0.6,
+						invalidateOnRefresh: true,
+					},
+				})
+				firstMovieTimeLine.to(
+					group.current.scale,
+					{
+						x: 0.5,
+						y: 0.5,
+						z: 0.5,
+					},
+					'same'
+				)
+				firstMovieTimeLine.to(
+					group.current.position,
+					{
+						z: () => {
+							return window.innerWidth * 0.001
+						},
+					},
+					'same'
+				)
+				firstMovieTimeLine.to(
+					musicMessage.current.position,
+					{
+						z: () => {
+							return musicMessage.current.position.z - 1
+						},
+					},
+					'same'
+				)
+				firstMovieTimeLine.to(
+					musicMessage.current.scale,
+					{
+						x: 0.8,
+						y: 0.8,
+						z: 0.8,
+					},
+					'same'
+				)
+				firstMovieTimeLine.to(
+					musicButton.current.position,
+					{
+						x: () => {
+							return musicButton.current.position.x - 0.3
+						},
+						z: () => {
+							return musicButton.current.position.z - 0.2
+						},
+					},
+					'same'
+				)
+
+				//Second Section
+				const secondMovieTimeLine = new GSAP.timeline({
+					scrollTrigger: {
+						scroller: '.page-wrapper',
+						trigger: '.second-move',
+						start: 'top top',
+						end: 'bottom bottom',
+						scrub: 0.6,
+						invalidateOnRefresh: true,
+					},
+				})
+				//Third Section
+				const thirdMovieTimeLine = new GSAP.timeline({
+					scrollTrigger: {
+						scroller: '.page-wrapper',
+						trigger: '.third-move',
+						start: 'top top',
+						end: `bottom bottom`,
+						scrub: 0.6,
+						invalidateOnRefresh: true,
+					},
+				})
+			},
 		})
 	}
 
@@ -189,11 +270,21 @@ const Scene = (props) => {
 				lerp.ease
 			)
 
-			group.current.rotation.y = lerp.current
+			if (viewport.width >= 4) {
+				group.current.rotation.y = lerp.current
+			}
 		}
 	})
 
 	useEffect(() => {
+		setTimeout(() => {
+			document.querySelector('.theme-switch-button').click()
+			setTimeout(
+				() => document.querySelector('.theme-switch-button').click(),
+				50
+			)
+		}, 100)
+
 		if (group.current) {
 			setModelLoaded(true)
 			setScrollTrigger()
@@ -211,7 +302,7 @@ const Scene = (props) => {
 	}, [viewport.width, viewport.height])
 
 	return (
-		<>
+		<group dispose={null}>
 			<OrthographicCamera
 				ref={ortCamera}
 				makeDefault
@@ -225,20 +316,39 @@ const Scene = (props) => {
 				rotation={[-Math.PI / 6, 0, 0]}
 				position={[0, 2, 3]}
 			/>
-			<group
-				name='Scene'
-				rotation={[0, -Math.PI / 4, 0]}
-				ref={group}
-				dispose={null}
-			>
-				<AudioPopup />
+			<group name='Scene' rotation={[0, -Math.PI / 4, 0]} ref={group}>
+				<group ref={musicMessage}>
+					<Html
+						rotation-y={Math.PI / 4}
+						distanceFactor={3.5}
+						position={[-0.2, 1.2, 1.2]}
+						transform
+						occlude
+					>
+						<PlayMusicMessage audioIsPlaying={audioIsPlaying} />
+					</Html>
+				</group>
+				<group ref={musicButton}>
+					<Html
+						rotation-y={Math.PI / 4}
+						distanceFactor={3.5}
+						position={[-0.2, 0.7, 1.8]}
+						transform
+						occlude
+					>
+						<PlayMusicButton
+							audioIsPlaying={audioIsPlaying}
+							audioIsLoading={audioIsLoading}
+						/>
+					</Html>
+				</group>
 				<Room nodes={model.nodes} />
 				<Glass nodes={model.nodes} />
 				<Screen nodes={model.nodes} />
 				<Lights nodes={model.nodes} />
 				<Cat />
 			</group>
-		</>
+		</group>
 	)
 }
 

@@ -7,6 +7,7 @@ import catmodel from '../assets/models/catmodel.glb'
 import videoBlender from '../assets/videos/makingroom_compressed.mp4'
 
 import screenbakedday from '../assets/textures/screenbakedday.jpg'
+import screenbakednight from '../assets/textures/screenbakednight.jpg'
 import bakedday from '../assets/textures/bakedday.jpg'
 import bakednight from '../assets/textures/bakednight.jpg'
 import curtainday from '../assets/textures/curtainday.jpg'
@@ -53,7 +54,6 @@ const createVideoTexture = (videoSrc) => {
     video.src = videoSrc
     video.muted = true
     video.loop = true
-    video.autoPlay = true
     video.play()
 
     const videoTexture = new THREE.VideoTexture(video)
@@ -61,7 +61,6 @@ const createVideoTexture = (videoSrc) => {
     videoTexture.flipY = false
     // videoTexture.minFilter = THREE.LinearFilter
     const material = new THREE.MeshBasicMaterial({ map: videoTexture })
-
     return material
 }
 
@@ -76,7 +75,7 @@ const createShaderTexture = (vertexShader, fragmentShader) => {
 
 export default {
     textures: {
-        screenBakedTexture: createThemeTexture(screenbakedday, screenbakedday),
+        screenBakedTexture: createThemeTexture(screenbakedday, screenbakednight),
         bakedTexture: createThemeTexture(bakedday, bakednight),
         curtainTexture: createThemeTexture(curtainday, curtainnight),
         floorTexture: createThemeTexture(floorday, floornight, true),

@@ -14,7 +14,11 @@ const ContactForm = ({ display }) => {
 			style={{ display }}
 		>
 			<h1>Contact Form</h1>
-			<div className='scroll'>Scroll area</div>
+
+			<div className='form-item'>
+				<label htmlFor='name'>Gaaaa</label>
+				<input type='text' name='name' id='name' />
+			</div>
 		</div>
 	)
 }

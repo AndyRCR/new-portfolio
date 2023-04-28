@@ -1,4 +1,4 @@
-.navbar-menu li{
+.navbar-menu .navbar-menu-list-item{
     align-items: center;
     cursor: pointer;
     display: flex;
@@ -8,23 +8,23 @@
     transition: .3s;
 }
 
-.navbar-menu.light li{
+.navbar-menu.light .navbar-menu-list-item{
     border-top: 1px solid #d8d8d8;
 }
 
-.navbar-menu.light li:nth-last-child(1){
+.navbar-menu.light .navbar-menu-list-item:nth-last-child(1){
     border-bottom: 1px solid #d8d8d8;
 }
 
-.navbar-menu.dark li{
+.navbar-menu.dark .navbar-menu-list-item{
     border-top: 1px solid var(--dark-section);
     color: #fff;
 }
 
-.navbar-menu li:hover{
+.navbar-menu .navbar-menu-list-item:hover{
     color: #08fdd8;
 }
 
-.navbar-menu.dark li:nth-last-child(1){
+.navbar-menu.dark .navbar-menu-list-item:nth-last-child(1){
     border-bottom: 1px solid var(--dark-section);
 }
