@@ -97,18 +97,27 @@ const HomeViewContainer = () => {
 					<div className='first-move section-margin'></div>
 
 					<section className='first-section section right'>
+						<div className='progress-wrapper progress-bar-wrapper-right'>
+							<div className='progress-bar'></div>
+						</div>
 						<h1 className='section-title'>A little about me</h1>
 					</section>
 
 					<div className='second-move section-margin'></div>
 
 					<section className='second-section section left'>
+						<div className='progress-wrapper progress-bar-wrapper-left'>
+							<div className='progress-bar'></div>
+						</div>
 						<h1 className='section-title'>Skills</h1>
 					</section>
 
 					<div className='third-move section-margin'></div>
 
-					<section className='third-section last-section right'>
+					<section className='third-section section right'>
+						<div className='progress-wrapper progress-bar-wrapper-right'>
+							<div className='progress-bar'></div>
+						</div>
 						<h1 className='section-title'>Projects</h1>
 					</section>
 				</div>

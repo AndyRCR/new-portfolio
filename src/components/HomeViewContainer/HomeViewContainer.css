@@ -45,14 +45,11 @@
 }
 
 .section{
+    position: relative;
+    overflow: hidden;
     padding: 1000px 4%;
     margin: 0;
-    transition: .3s;
-}
-
-.last-section{
-    padding: 2500px 4%;
-    margin: 0;
+    width: 50%;
     transition: .3s;
 }
 
@@ -64,19 +61,43 @@
     background-color: var(--dark-section);
 }
 
-.left, .right{
-    width: 50%;
-}
-
 .left{
     margin-right: auto;
-    border-radius: 0px 30px 30px 0px;
+    border-top-right-radius: 700px 700px;
+    border-bottom-right-radius: 0px 0px;
 }
 
 .right{
     margin-left: auto;
-    border-top-left-radius: 790px;
-    border-bottom-left-radius: 0;
+    border-top-left-radius: 700px 700px;
+    border-bottom-left-radius: 0px 0px
+}
+
+/*Progress bar*/
+.progress-wrapper{
+    height: 0;
+    width: 12px;
+    z-index: 50;
+}
+
+.progress-bar-wrapper-left{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.progress-bar-wrapper-right{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.progress-bar{
+    height: 100vh;
+    width: 100%;
+    background-color: red;
+    transform-origin: top center;
+    transform: scaleY(1);
 }
 
 
@@ -174,6 +195,15 @@
     .home-view-container .hero-main{
         align-items: center;
         text-align: center;
+    }
+
+    .home-view-container .section{
+        width: 100%;
+    }
+
+    .home-view-container .progress-bar-wrapper-left{
+        right: 0;
+        left: auto;
     }
 }
 

@@ -1,0 +1,35 @@
+.page-options{
+    padding: 20px 30px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: .3s;
+    border-bottom-left-radius: 20px;
+}
+
+.page-options.light{
+    background-color: var(--light-secondary);
+    border: 1px solid #d8d8d8;
+}
+
+.page-options.dark{
+    background-color: var(--dark-secondary);
+    border: 1px solid var(--dark-secondary);
+}
+
+.page-options .separator{
+    height: 30px;
+    transition: .3s;
+}
+
+.page-options.light .separator{
+    border: 1px solid black;
+}
+
+.page-options.dark .separator{
+    border: 1px solid white;
+}

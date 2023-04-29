@@ -213,12 +213,9 @@ const Scene = (props) => {
 				firstMovieTimeLine.to(
 					musicButton.current.position,
 					{
-						x: () => {
-							return musicButton.current.position.x - 0.3
-						},
-						z: () => {
-							return musicButton.current.position.z - 0.2
-						},
+						x: 0.4,
+						y: 0.5,
+						z: -0.9,
 					},
 					'same'
 				)
@@ -246,6 +243,63 @@ const Scene = (props) => {
 					},
 				})
 			},
+			all: () => {
+				const sections = document.querySelectorAll('.section')
+
+				sections.forEach((section) => {
+					const progressWrapper =
+						section.querySelector('progress-wrapper')
+					const progressBar = section.querySelector('progress-bar')
+
+					if (section.classList.contains('right')) {
+						GSAP.to(section, {
+							borderTopLeftRadius: 10,
+							scrollTrigger: {
+								scroller: '.page-wrapper',
+								trigger: section,
+								start: 'top bottom',
+								end: 'top top',
+								scrub: 0.6,
+							},
+						})
+					} else {
+						new GSAP.timeline({
+							scrollTrigger: {
+								scroller: '.page-wrapper',
+								trigger: section,
+								start: 'top bottom',
+								end: 'top top',
+								scrub: 0.6,
+								invalidateOnRefresh: true,
+							},
+						}).to(
+							section,
+							{
+								borderTopLeftRadius: 0,
+							},
+							'same'
+						)
+
+						GSAP.timeline({
+							scrollTrigger: {
+								scroller: '.page-wrapper',
+								trigger: section,
+								start: 'bottom bottom',
+								end: 'bottom -20%',
+								scrub: 0.6,
+								invalidateOnRefresh: true,
+								markers: true,
+							},
+						}).to(
+							section,
+							{
+								borderBottomLeftRadius: 900,
+							},
+							'same'
+						)
+					}
+				})
+			},
 		})
 	}
 
@@ -270,9 +324,7 @@ const Scene = (props) => {
 				lerp.ease
 			)
 
-			if (viewport.width >= 4) {
-				group.current.rotation.y = lerp.current
-			}
+			group.current.rotation.y = lerp.current
 		}
 	})
 
@@ -332,6 +384,7 @@ const Scene = (props) => {
 					<Html
 						rotation-y={Math.PI / 4}
 						distanceFactor={3.5}
+						// position={[0, 0.7, 0.6]}
 						position={[-0.2, 0.7, 1.8]}
 						transform
 						occlude

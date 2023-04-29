@@ -6,7 +6,7 @@
   --dark-section: #0f0f52;
   --light-main: #fff;
   --light-secondary: #f9f9f9;
-  --light-section: #c6edff;
+  --light-section: #5ab7e2;
 }
 
 * {
@@ -31,6 +31,6 @@ ul{
   list-style: none;
 }
 
-/* ::-webkit-scrollbar{
+::-webkit-scrollbar{
   display: none;
-} */
+}

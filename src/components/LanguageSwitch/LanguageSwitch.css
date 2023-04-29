@@ -1,0 +1,25 @@
+.language-switch{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+}
+
+.language-switch-container{
+    width: 60px;
+    height: 30px;
+    border-radius: 20px;
+    transition: .3s;
+}
+
+.language-switch.light .language-switch-container{
+    border: 1px solid black;
+}
+
+.language-switch.dark .language-switch-container{
+    border: 1px solid white;
+}
+
+.language-switch img{
+    width: 24px;
+}
