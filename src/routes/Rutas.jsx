@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Layout from '../components/Layout/Layout'
 import HomeView from '../views/HomeView'
 import ContactView from '../views/ContactView'
+import Layout from '../components/Layout'
 
 const Rutas = () => {
 	return (

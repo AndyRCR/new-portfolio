@@ -16,6 +16,7 @@ import ScreenRoom from '../Room/ScreenRoom'
 import ScreenGlass from '../Glass/ScreenGlass'
 import ScreenLights from '../Lights/ScreenLights'
 import ScreenForm from '../Screen/ScreenForm'
+import { ModelContext } from '../../context/ModelGlobalContext'
 
 const filterAnimations = (animations) => {
 	return Object.entries(animations)
@@ -25,7 +26,8 @@ const filterAnimations = (animations) => {
 
 const Scene = (props) => {
 	const { viewport } = useThree()
-	const { theme, modelLoaded, setModelLoaded } = useContext(ThemeContext)
+	const { theme } = useContext(ThemeContext)
+	const { modelLoaded, setModelLoaded } = useContext(ModelContext)
 
 	const perspCamera = useRef()
 	const group = useRef()

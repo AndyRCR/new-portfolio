@@ -1,6 +1,7 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import assets from '../../utils/assets'
+import { ModelContext } from '../../context/ModelGlobalContext'
 
 export const Cat = (props) => {
 	const group = useRef()
@@ -8,9 +9,8 @@ export const Cat = (props) => {
 	const { actions } = useAnimations(animations, group)
 
 	useEffect(() => {
-		// console.log(Object.values(actions))
 		Object.values(actions).forEach((action) => action.play())
-	})
+	}, [])
 
 	return (
 		<group ref={group} {...props} dispose={null}>

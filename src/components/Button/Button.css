@@ -23,6 +23,10 @@
     color:#fff;
 }
 
+.button:hover{
+    scale: 1.05
+}
+
 .button:active{
     outline: none;
     scale: .95;

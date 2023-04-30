@@ -24,11 +24,12 @@ import Lights from '../Lights/Lights'
 import PlayMusicMessage from '../PlayMusicMessage/PlayMusicMessage'
 import PlayMusicButton from '../PlayMusicButton/PlayMusicButton'
 import Circles from '../Circles/Circles'
+import { ModelContext } from '../../context/ModelGlobalContext'
 
 const Scene = (props) => {
-	const { viewport, gl } = useThree()
-	const { theme, setTheme, modelLoaded, setModelLoaded } =
-		useContext(ThemeContext)
+	const { viewport } = useThree()
+	const { theme } = useContext(ThemeContext)
+	const { setModelLoaded } = useContext(ModelContext)
 	const { audioIsPlaying, audioIsLoading, handleStop, handlePlay } =
 		useContext(AudioContext)
 
@@ -38,9 +39,6 @@ const Scene = (props) => {
 
 	const group = useRef()
 	const model = useGLTF(assets.models.room)
-
-	const cat = useRef()
-	const catmodel = useGLTF(assets.models.catmodel)
 
 	const [lerp, setLerp] = useState({
 		current: -Math.PI / 4,
@@ -343,7 +341,6 @@ const Scene = (props) => {
 							},
 						})
 					}
-
 					GSAP.from(progressBar, {
 						scaleY: 0,
 						scrollTrigger: {
@@ -389,17 +386,16 @@ const Scene = (props) => {
 	useEffect(() => {
 		setTimeout(() => {
 			document.querySelector('.theme-switch .switch-container').click()
-			setTimeout(
-				() =>
-					document
-						.querySelector('.theme-switch .switch-container')
-						.click(),
-				50
-			)
+			setTimeout(() => {
+				document
+					.querySelector('.theme-switch .switch-container')
+					.click()
+
+				setModelLoaded(true)
+			}, 50)
 		}, 100)
 
 		if (group.current) {
-			setModelLoaded(true)
 			setScrollTrigger()
 			window.addEventListener('mousemove', lerpModel)
 		}
@@ -468,6 +464,5 @@ const Scene = (props) => {
 }
 
 useGLTF.preload(assets.models.room)
-useGLTF.preload(assets.models.catmodel)
 
 export default Scene

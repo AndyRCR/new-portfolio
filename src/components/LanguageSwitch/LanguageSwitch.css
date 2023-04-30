@@ -43,3 +43,11 @@
 .dark .switch-button{
     background-color: #fff;
 }
+
+.en .switch-button{
+    margin-right: 50%;
+}
+
+.es .switch-button{
+    margin-left: 50%;
+}

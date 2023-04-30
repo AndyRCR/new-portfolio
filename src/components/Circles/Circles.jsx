@@ -79,7 +79,7 @@ const Circles = ({ theme }) => {
 			>
 				<meshStandardMaterial
 					reflectivity={0}
-					color={theme === 'light' ? '#B2FFFF' : '#00175B'}
+					color={theme === 'light' ? '#87CEFA' : '#00175B'}
 				/>
 			</Circle>
 			<Circle
@@ -92,7 +92,7 @@ const Circles = ({ theme }) => {
 			>
 				<meshStandardMaterial
 					reflectivity={0}
-					color={theme === 'light' ? '#87CEFA' : '#111858'}
+					color={theme === 'light' ? '#6495ED' : '#001744'}
 				/>
 			</Circle>
 			<Circle
@@ -105,7 +105,7 @@ const Circles = ({ theme }) => {
 			>
 				<meshStandardMaterial
 					reflectivity={0}
-					color={theme === 'light' ? '#6495ED' : '#001744'}
+					color={theme === 'light' ? '#B2FFFF' : '#111858'}
 				/>
 			</Circle>
 		</React.Fragment>
