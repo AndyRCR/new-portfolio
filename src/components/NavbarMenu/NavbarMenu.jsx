@@ -23,7 +23,7 @@ const NavbarMenu = ({ theme }) => {
 					</Link>
 				</li>
 				<li>
-					<Link className='navbar-menu-list-item' to='/contact'>
+					<Link className='navbar-menu-list-item last' to='/contact'>
 						Contact
 					</Link>
 				</li>

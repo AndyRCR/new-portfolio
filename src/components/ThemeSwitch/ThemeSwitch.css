@@ -1,27 +1,6 @@
-.theme-switch{
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 15px;
-}
-
-.theme-switch .theme-switch-button{
-    width: 60px;
-    height: 30px;
-    border-radius: 20px;
-}
-
-.theme-switch.dark .theme-switch-button{
-    border: 1px solid white;
-}
-
-.theme-switch.light .theme-switch-button{
-    border: 1px solid black;
-}
-
 .theme-switch .theme-switch-icon{
-    width: 24px;
-    height: 24px;
+    width: 22px;
+    height: 22px;
 }
 
 .theme-switch.light .theme-switch-icon{
@@ -38,4 +17,12 @@
 
 .theme-switch.dark path{
     stroke: #fff
+}
+
+.theme-switch.light .switch-button{
+    margin-right: 50%;
+}
+
+.theme-switch.dark .switch-button{
+    margin-left: 50%;
 }

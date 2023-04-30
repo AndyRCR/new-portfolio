@@ -17,7 +17,7 @@
 
 .navbar.light{
     border-right: 1px solid #d8d8d8;
-    background-color: var(--light-secondary);
+    /* background-color: var(--light-secondary); */
 }
 
 .navbar .navbar-logo{
@@ -33,11 +33,13 @@
 .navbar.dark .navbar-logo{
     border-right: 1px solid var(--dark-section);
     background-color: var(--dark-main);
+    border-bottom: 1px solid var(--dark-section);
 }
 
 .navbar.light .navbar-logo{
     border-right: 1px solid #d8d8d8;
     background-color: var(--light-main);
+    border-bottom: 1px solid #d8d8d8;
 }
 
 .navbar .logo{

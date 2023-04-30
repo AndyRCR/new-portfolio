@@ -12,7 +12,7 @@
     border-top: 1px solid #d8d8d8;
 }
 
-.navbar-menu.light .navbar-menu-list-item:nth-last-child(1){
+.navbar-menu.light .navbar-menu-list-item.last{
     border-bottom: 1px solid #d8d8d8;
 }
 
@@ -25,6 +25,6 @@
     color: #08fdd8;
 }
 
-.navbar-menu.dark .navbar-menu-list-item:nth-last-child(1){
+.navbar-menu.dark .navbar-menu-list-item.last{
     border-bottom: 1px solid var(--dark-section);
 }

@@ -1,13 +1,15 @@
-import { useContext, useEffect } from 'react'
-import Experience from '../Experience/Experience'
+import { useContext, useEffect, useRef } from 'react'
 import { ThemeContext } from '../../context/ThemeGlobalContext'
 import { AudioContext } from '../../context/AudioGlobalContext'
+import Experience from '../Experience/Experience'
 import Button from '../Button/Button'
 import './HomeViewContainer.css'
 
 const HomeViewContainer = () => {
 	const { theme, modelLoaded } = useContext(ThemeContext)
 	const { handleStop, handlePlay, audioIsPlaying } = useContext(AudioContext)
+
+	const bgRef = useRef(null)
 
 	const handleMouseEnterButton = () => {
 		if (modelLoaded) {
@@ -45,8 +47,10 @@ const HomeViewContainer = () => {
 		}
 	}
 
+	useEffect(() => {}, [])
+
 	return (
-		<div className={`home-view-container ${theme}`}>
+		<div className={`home-view-container ${theme}`} ref={bgRef}>
 			<div className='experience'>
 				<Experience />
 			</div>

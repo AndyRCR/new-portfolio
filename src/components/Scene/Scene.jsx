@@ -23,6 +23,7 @@ import Screen from '../Screen/Screen'
 import Lights from '../Lights/Lights'
 import PlayMusicMessage from '../PlayMusicMessage/PlayMusicMessage'
 import PlayMusicButton from '../PlayMusicButton/PlayMusicButton'
+import Circles from '../Circles/Circles'
 
 const Scene = (props) => {
 	const { viewport, gl } = useThree()
@@ -177,9 +178,9 @@ const Scene = (props) => {
 				firstMovieTimeLine.to(
 					group.current.scale,
 					{
-						x: 0.5,
-						y: 0.5,
-						z: 0.5,
+						x: 0.4,
+						y: 0.4,
+						z: 0.4,
 					},
 					'same'
 				)
@@ -187,35 +188,17 @@ const Scene = (props) => {
 					group.current.position,
 					{
 						z: () => {
-							return window.innerWidth * 0.001
+							return window.innerHeight * 0.001
 						},
 					},
 					'same'
 				)
 				firstMovieTimeLine.to(
-					musicMessage.current.position,
+					ortCamera.current.position,
 					{
-						z: () => {
-							return musicMessage.current.position.z - 1
+						y: () => {
+							return window.innerHeight * 0.002
 						},
-					},
-					'same'
-				)
-				firstMovieTimeLine.to(
-					musicMessage.current.scale,
-					{
-						x: 0.8,
-						y: 0.8,
-						z: 0.8,
-					},
-					'same'
-				)
-				firstMovieTimeLine.to(
-					musicButton.current.position,
-					{
-						x: 0.4,
-						y: 0.5,
-						z: -0.9,
 					},
 					'same'
 				)
@@ -231,6 +214,52 @@ const Scene = (props) => {
 						invalidateOnRefresh: true,
 					},
 				})
+				secondMovieTimeLine.to(
+					group.current.scale,
+					{
+						x: 0.55,
+						y: 0.55,
+						z: 0.55,
+					},
+					'same'
+				)
+				secondMovieTimeLine.to(
+					musicMessage.current.position,
+					{
+						z: () => {
+							return musicMessage.current.position.z - 1
+						},
+					},
+					'same'
+				)
+				secondMovieTimeLine.to(
+					musicMessage.current.scale,
+					{
+						x: 0.8,
+						y: 0.8,
+						z: 0.8,
+					},
+					'same'
+				)
+				secondMovieTimeLine.to(
+					musicButton.current.position,
+					{
+						x: 0.4,
+						y: 0.5,
+						z: -0.9,
+					},
+					'same'
+				)
+				secondMovieTimeLine.to(
+					ortCamera.current.position,
+					{
+						y: () => {
+							return window.innerHeight * 0.0025
+						},
+					},
+					'same'
+				)
+
 				//Third Section
 				const thirdMovieTimeLine = new GSAP.timeline({
 					scrollTrigger: {
@@ -242,14 +271,32 @@ const Scene = (props) => {
 						invalidateOnRefresh: true,
 					},
 				})
+				thirdMovieTimeLine.to(
+					group.current.scale,
+					{
+						x: 1.3,
+						y: 1.3,
+						z: 1.3,
+					},
+					'same'
+				)
+				thirdMovieTimeLine.to(
+					ortCamera.current.position,
+					{
+						y: () => {
+							return window.innerHeight * 0.0045
+						},
+					},
+					'same'
+				)
 			},
 			all: () => {
 				const sections = document.querySelectorAll('.section')
 
 				sections.forEach((section) => {
 					const progressWrapper =
-						section.querySelector('progress-wrapper')
-					const progressBar = section.querySelector('progress-bar')
+						section.querySelector('.progress-wrapper')
+					const progressBar = section.querySelector('.progress-bar')
 
 					if (section.classList.contains('right')) {
 						GSAP.to(section, {
@@ -262,42 +309,53 @@ const Scene = (props) => {
 								scrub: 0.6,
 							},
 						})
+
+						GSAP.to(section, {
+							borderBottomLeftRadius: 700,
+							scrollTrigger: {
+								scroller: '.page-wrapper',
+								trigger: section,
+								start: 'bottom bottom',
+								end: 'bottom top',
+								scrub: 0.6,
+							},
+						})
 					} else {
-						new GSAP.timeline({
+						GSAP.to(section, {
+							borderTopRightRadius: 10,
 							scrollTrigger: {
 								scroller: '.page-wrapper',
 								trigger: section,
 								start: 'top bottom',
 								end: 'top top',
 								scrub: 0.6,
-								invalidateOnRefresh: true,
 							},
-						}).to(
-							section,
-							{
-								borderTopLeftRadius: 0,
-							},
-							'same'
-						)
+						})
 
-						GSAP.timeline({
+						GSAP.to(section, {
+							borderBottomRightRadius: 700,
 							scrollTrigger: {
 								scroller: '.page-wrapper',
 								trigger: section,
 								start: 'bottom bottom',
-								end: 'bottom -20%',
+								end: 'bottom top',
 								scrub: 0.6,
-								invalidateOnRefresh: true,
-								markers: true,
 							},
-						}).to(
-							section,
-							{
-								borderBottomLeftRadius: 900,
-							},
-							'same'
-						)
+						})
 					}
+
+					GSAP.from(progressBar, {
+						scaleY: 0,
+						scrollTrigger: {
+							scroller: '.page-wrapper',
+							trigger: section,
+							start: 'top top',
+							end: 'bottom bottom',
+							scrub: 0.6,
+							pin: progressWrapper,
+							pinSpacing: false,
+						},
+					})
 				})
 			},
 		})
@@ -330,9 +388,12 @@ const Scene = (props) => {
 
 	useEffect(() => {
 		setTimeout(() => {
-			document.querySelector('.theme-switch-button').click()
+			document.querySelector('.theme-switch .switch-container').click()
 			setTimeout(
-				() => document.querySelector('.theme-switch-button').click(),
+				() =>
+					document
+						.querySelector('.theme-switch .switch-container')
+						.click(),
 				50
 			)
 		}, 100)
@@ -400,6 +461,7 @@ const Scene = (props) => {
 				<Screen nodes={model.nodes} />
 				<Lights nodes={model.nodes} />
 				<Cat />
+				<Circles theme={theme} />
 			</group>
 		</group>
 	)

@@ -1,12 +1,10 @@
-import { useContext, useEffect, useRef } from 'react'
+import { useContext, useEffect } from 'react'
 import GSAP from 'gsap'
 import { ThemeContext } from '../../context/ThemeGlobalContext'
-import './PlayMusicMessage.css'
 import { ScrollTrigger } from 'gsap/ScrollTrigger.js'
+import './PlayMusicMessage.css'
 
 const PlayMusicMessage = ({ audioIsPlaying }) => {
-	const pick = useRef()
-
 	const showPlayMessage = () => {
 		const playMessage = document.querySelector(
 			'.play-music-message-container'
@@ -26,7 +24,7 @@ const PlayMusicMessage = ({ audioIsPlaying }) => {
 				const firstMovieTimeLine = new GSAP.timeline({
 					scrollTrigger: {
 						scroller: '.page-wrapper',
-						trigger: '.first-move',
+						trigger: '.second-move',
 						start: 'top top',
 						end: 'bottom bottom',
 						scrub: 0.6,
@@ -35,17 +33,6 @@ const PlayMusicMessage = ({ audioIsPlaying }) => {
 				})
 				firstMovieTimeLine.to('.play-music-pick', { left: 10 })
 
-				//Second Section
-				const secondMovieTimeLine = new GSAP.timeline({
-					scrollTrigger: {
-						scroller: '.page-wrapper',
-						trigger: '.second-move',
-						start: 'top top',
-						end: 'bottom bottom',
-						scrub: 0.6,
-						invalidateOnRefresh: true,
-					},
-				})
 				//Third Section
 				const thirdMovieTimeLine = new GSAP.timeline({
 					scrollTrigger: {
@@ -57,6 +44,7 @@ const PlayMusicMessage = ({ audioIsPlaying }) => {
 						invalidateOnRefresh: true,
 					},
 				})
+				thirdMovieTimeLine.to('.play-music-message', { opacity: 0 })
 			},
 		})
 	}
@@ -72,7 +60,7 @@ const PlayMusicMessage = ({ audioIsPlaying }) => {
 				{audioIsPlaying
 					? 'F. Chopin - Nocturne Op9 No2 ♫'
 					: 'I play you a song? 😁'}
-				<div ref={pick} className='play-music-pick'></div>
+				<div className='play-music-pick'></div>
 			</div>
 		</div>
 	)

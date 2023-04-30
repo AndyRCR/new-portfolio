@@ -1,14 +1,14 @@
 .page-options{
-    padding: 20px 30px;
+    padding: 20px 20px;
     position: absolute;
     top: 0;
-    right: 0;
+    right: 20px;
     z-index: 100;
     display: flex;
     align-items: center;
     gap: 10px;
     transition: .3s;
-    border-bottom-left-radius: 20px;
+    border-radius: 0 0 20px 20px;
 }
 
 .page-options.light{
@@ -22,7 +22,7 @@
 }
 
 .page-options .separator{
-    height: 30px;
+    height: 25px;
     transition: .3s;
 }
 

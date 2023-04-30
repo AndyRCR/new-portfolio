@@ -1,3 +1,16 @@
+.home-view-container{
+    /* background-color: red; */
+    position: static !important;
+}
+
+.home-view-container.dark{
+    background-color: #1C1C51;
+}
+
+.home-view-container.light{
+    background-color: #fff;
+}
+
 .home-view-container .experience{
     position: fixed;
     width: calc(100% - 150px);
@@ -50,15 +63,19 @@
     padding: 1000px 4%;
     margin: 0;
     width: 50%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    backdrop-filter: blur(4.2px);
+    -webkit-backdrop-filter: blur(4.2px);
     transition: .3s;
 }
 
 .home-view-container.light .section, .home-view-container.light .last-section{
-    background-color: var(--light-section);
+    background: rgba(90, 183, 226, 0.62);
+
 }
 
 .home-view-container.dark .section, .home-view-container.dark .last-section{
-    background-color: var(--dark-section);
+    background: rgba(15, 15, 82, 0.62);
 }
 
 .left{
@@ -95,9 +112,17 @@
 .progress-bar{
     height: 100vh;
     width: 100%;
-    background-color: red;
+    background-color: #000;
     transform-origin: top center;
     transform: scaleY(1);
+}
+
+.light .progress-bar{
+    background-color: #344F6A;
+}
+
+.dark .progress-bar{
+    background-color: var(--light-section);
 }
 
 
@@ -112,7 +137,7 @@
 .home-view-container .hero-main-title {
     font-size: 60px;
     font-weight: bold;
-    max-width: 21ch;
+    max-width: 18ch;
     line-height: 60px;
     display: inline;
 }

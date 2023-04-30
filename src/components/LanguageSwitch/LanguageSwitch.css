@@ -1,25 +1,45 @@
-.language-switch{
+.switch{
     display: flex;
     align-items: center;
     gap: 8px;
     font-size: 15px;
 }
 
-.language-switch-container{
-    width: 60px;
-    height: 30px;
+.switch-container{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    width: 50px;
+    height: 25px;
     border-radius: 20px;
     transition: .3s;
+    padding: 4px;
 }
 
-.language-switch.light .language-switch-container{
-    border: 1px solid black;
+.light .switch-container{
+    border: 2px solid black;   
 }
 
-.language-switch.dark .language-switch-container{
-    border: 1px solid white;
+.dark .switch-container{
+    border: 2px solid white;
+    background-color: #000;
 }
 
 .language-switch img{
-    width: 24px;
+    width: 22px;
+}
+
+.switch-button{
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    transition: .3s;
+}
+
+.light .switch-button{
+    background-color: #000;
+}
+
+.dark .switch-button{
+    background-color: #fff;
 }
