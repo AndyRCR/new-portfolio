@@ -5,14 +5,14 @@ import GSAP from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger.js'
 import './PlayMusicButton.css'
 
-const PlayMusicButton = ({ audioIsPlaying, audioIsLoading }) => {
+const PlayMusicButton = ({ audioIsPlaying, audioIsLoading, quitIntro }) => {
 	const showPlayButton = () => {
 		const playButton = document.querySelector(
 			'.play-music-button-container'
 		)
 		const gsapAnimation = GSAP.to(playButton, {
 			duration: 0.5,
-			delay: 1,
+			delay: 3.7,
 			scale: 1,
 		})
 	}
@@ -40,9 +40,11 @@ const PlayMusicButton = ({ audioIsPlaying, audioIsLoading }) => {
 	}
 
 	useEffect(() => {
-		showPlayButton()
-		setScrollTrigger()
-	}, [])
+		if (quitIntro) {
+			showPlayButton()
+			setScrollTrigger()
+		}
+	}, [quitIntro])
 
 	return (
 		<div className='play-music-button'>

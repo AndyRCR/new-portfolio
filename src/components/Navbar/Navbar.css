@@ -44,6 +44,7 @@
 
 .navbar .logo{
     width: 100%;
+    cursor: pointer;
     transition: .3s;
 }
 

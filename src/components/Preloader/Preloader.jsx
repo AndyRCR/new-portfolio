@@ -1,7 +1,6 @@
 import { useContext, useEffect, useRef, useState } from 'react'
 import Lottie from 'lottie-react'
 import lighttransition from '../../assets/lotties/lighttransition.json'
-import loadericon from '../../assets/lotties/loadericon.json'
 import loaderhands from '../../assets/lotties/handsloader.json'
 import GSAP from 'gsap'
 import { ThemeContext } from '../../context/ThemeGlobalContext'
@@ -18,11 +17,11 @@ const Preloader = () => {
 
 	const firstIntro = () => {
 		GSAP.timeline()
-			.to('.loaderlottie', {
+			.to('.loader-lottie', {
 				opacity: 0,
 				delay: 2,
 				onComplete: () => {
-					document.querySelector('.loaderlottie').style.display =
+					document.querySelector('.loader-lottie').style.display =
 						'none'
 					loaderlottie.current.stop()
 					document
@@ -91,17 +90,20 @@ const Preloader = () => {
 				loop={false}
 				autoPlay={false}
 				animationData={lighttransition}
-				sp
 				onLoopComplete={() => lightlottie.current.pause()}
 			/>
 			<div className='preloader-container'>
-				<Lottie
-					className='loaderlottie'
-					lottieRef={loaderlottie}
-					loop={true}
-					autoPlay={true}
-					animationData={loadericon}
-				/>
+				<div className='loader-lottie'>
+					<Lottie
+						lottieRef={loaderlottie}
+						loop={true}
+						autoPlay={true}
+						animationData={loaderhands}
+					/>
+					<div className='loader-lottie-text'>
+						Loading models and heavy assets 🥴
+					</div>
+				</div>
 				<div className='loader-welcome-text'>
 					Welcome to my portfolio
 				</div>

@@ -3,10 +3,15 @@ import React, { useContext } from 'react'
 import { AudioContext } from '../../context/AudioGlobalContext'
 import PlayMusicMessage from '../PlayMusicMessage/PlayMusicMessage'
 import PlayMusicButton from '../PlayMusicButton/PlayMusicButton'
+import { LanguageContext } from '../../context/LanguageGlobalContext'
+import { ModelContext } from '../../context/ModelGlobalContext'
 
 const AudioPopup = () => {
 	const { audioIsPlaying, audioIsLoading, handleStop, handlePlay } =
 		useContext(AudioContext)
+
+	const { quitIntro } = useContext(ModelContext)
+	const { language } = useContext(LanguageContext)
 
 	const audioProps = {
 		audioIsPlaying,
@@ -24,7 +29,10 @@ const AudioPopup = () => {
 				transform
 				occlude
 			>
-				<PlayMusicMessage audioIsPlaying={audioIsPlaying} />
+				<PlayMusicMessage
+					audioIsPlaying={audioIsPlaying}
+					language={language}
+				/>
 			</Html>
 			<Html
 				rotation-y={Math.PI / 4}

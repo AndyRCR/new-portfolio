@@ -1,6 +1,6 @@
 .preloader {
 	position: absolute;
-	z-index: 200;
+	z-index: 99999999;
 	width: 100%;
 	height: 100vh;
 	display: flex;
@@ -26,18 +26,25 @@
 	left: 0;
 }
 
-.preloader .loaderlottie {
+.preloader .loader-lottie {
 	width: 200px;
-	height: 200px;
 	position: absolute;
 	top: 0;
 	left: 0;
+}
+
+.preloader .loader-lottie-text{
+	text-align: center;
+	user-select: none;
+	font-size: 18px;
+	transform: translateY(-50px);
 }
 
 .preloader .loader-welcome-text {
 	font-weight: thin;
 	font-size: 30px;
 	display: none;
+	user-select: none;
 }
 
 .preloader .loader-welcome-text.fade-in {
@@ -57,7 +64,7 @@
 .preloader .preloader-arrow {
 	opacity: 0;
 	position: absolute;
-	bottom: 30px;
+	bottom: 60px;
 	right: calc(50% - 24px);
     animation: moveUpDown 1.2s infinite 1s linear;
 }

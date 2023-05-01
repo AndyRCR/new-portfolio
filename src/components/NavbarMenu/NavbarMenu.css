@@ -28,3 +28,9 @@
 .navbar-menu.dark .navbar-menu-list-item.last{
     border-bottom: 1px solid var(--dark-section);
 }
+
+@media (max-height: 800px) {
+    .navbar-menu .navbar-menu-list-item{
+        height: 55px;
+    }
+}

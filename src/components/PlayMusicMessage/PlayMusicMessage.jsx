@@ -4,14 +4,14 @@ import { ThemeContext } from '../../context/ThemeGlobalContext'
 import { ScrollTrigger } from 'gsap/ScrollTrigger.js'
 import './PlayMusicMessage.css'
 
-const PlayMusicMessage = ({ audioIsPlaying }) => {
+const PlayMusicMessage = ({ audioIsPlaying, language, quitIntro }) => {
 	const showPlayMessage = () => {
 		const playMessage = document.querySelector(
 			'.play-music-message-container'
 		)
 		GSAP.to(playMessage, {
 			duration: 0.5,
-			delay: 0.5,
+			delay: 3.2,
 			scale: 1,
 		})
 	}
@@ -50,16 +50,22 @@ const PlayMusicMessage = ({ audioIsPlaying }) => {
 	}
 
 	useEffect(() => {
-		showPlayMessage()
-		setScrollTrigger()
-	}, [])
+		if (quitIntro) {
+			showPlayMessage()
+			setScrollTrigger()
+		}
+	}, [quitIntro])
 
 	return (
 		<div className='play-music-message'>
 			<div className='play-music-message-container'>
 				{audioIsPlaying
 					? 'F. Chopin - Nocturne Op9 No2 ♫'
-					: 'I play you a song? 😁'}
+					: `${
+							language === 'en'
+								? 'I play you a song'
+								: '¿Te toco una canción'
+					  }? 😁`}
 				<div className='play-music-pick'></div>
 			</div>
 		</div>

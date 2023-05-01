@@ -1,0 +1,33 @@
+.navbar-socials{
+    margin-bottom: 30px;
+}
+
+.navbar-socials ul{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    font-size: 40px;
+    text-align: center;
+}
+
+.navbar-socials .navbar-icon{
+    transition: .3s;
+}
+
+.navbar-socials.dark .navbar-icon{
+    color: #fff;
+}
+
+.navbar-socials.dark .navbar-icon.blue{
+    color: #0077B7;
+}
+
+.navbar-socials .navbar-icon:hover{
+    scale: 1.4;
+}
+
+@media (max-height: 800px) {
+    .navbar-socials ul{
+        gap: 5px;
+    }
+}

@@ -1,0 +1,144 @@
+.hero{
+    width: calc(100% - 150px);
+    height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.hero .hero-wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    margin-bottom: 100px;
+}
+
+/*Hero-main*/
+
+.hero .hero-main{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.hero .hero-main-title {
+    font-size: 60px;
+    font-weight: bold;
+    max-width: 18ch;
+    line-height: 60px;
+    display: inline;
+}
+
+.hero .hero-main-description {
+    font-size: 24px;
+}
+
+.hero .rubber-container{
+    max-width: 70ch;
+}
+
+/*Scroll indicator*/
+.hero .lets-start{
+    text-align: center;
+    opacity: 1;
+    font-size: 15px;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.hero .lets-start-icon{
+    animation: moveUpDown 1s infinite 1s linear;
+}
+
+@media (max-width: 1500px) {
+    .hero .rubber-container{
+        max-width: 60ch;
+    }
+
+    .home .hero-main-title{
+        font-size: 50px;
+        line-height: 50px;
+    }
+
+    .home .hero-main-description{
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .hero{
+        align-items: flex-start;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .hero .rubber-container{
+        max-width: 65ch;
+    }
+
+    .hero .hero-wrapper{
+        margin-bottom: 0;
+        margin-top: 100px;
+        align-items: center;
+    }
+
+    .hero .hero-main{
+        align-items: center;
+        text-align: center;
+    }
+}
+
+@media (max-width: 700px) {
+    .hero{
+        padding: 10px;
+    }
+
+    .hero .hero-main-title{
+        font-size: 40px;
+        line-height: 40px;
+    }
+
+    .hero .hero-main-description{
+        font-size: 16px;
+    }
+
+    .hero .rubber-container{
+        max-width: 48ch;
+    }
+
+    .hero .hero-wrapper {
+        gap: 30px;
+    }
+}
+
+@media (max-width: 500px) {
+    .hero .hero-main-title{
+        font-size: 35px;
+        line-height: 35px;
+    }
+
+    .hero .hero-main-description{
+        font-size: 14px;
+    }
+
+    .hero .hero-wrapper{
+        margin-top: 80px;
+        gap: 20px;
+    }
+
+    .hero .lets-start{
+        font-size: 12px;
+        flex-direction: row;
+    }
+
+    .hero .rubber-container{
+        max-width: 30ch;
+    }
+}

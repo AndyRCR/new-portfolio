@@ -1,7 +1,14 @@
+.view-container{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin-left: 150px;
+}
+
 .view{
     width: 100%;
-    height: 100vh; /**/
-    margin-left: 150px;
+    height: 100%; 
+    /* margin-left: 150px;  */
 }
 
 .view > div{
@@ -16,7 +23,7 @@
 }
 
 @media (max-width: 1250px) {
-    .view{
+    .view-container{
         margin-left: 0;
     }
 }

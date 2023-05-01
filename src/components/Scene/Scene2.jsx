@@ -54,11 +54,11 @@ const Scene = (props) => {
 	const initializingModel = () => {
 		const { x, y, z } = group.current.position
 		perspCamera.current.position.set(x - 1.2, y + 1.3, z - 0.8)
+		setModelLoaded(true)
 	}
 
 	useEffect(() => {
 		if (group.current) {
-			setModelLoaded(true)
 			playAnimations()
 			window.addEventListener('mousemove', lerpCamera)
 		}

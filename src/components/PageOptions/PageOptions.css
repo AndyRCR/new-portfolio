@@ -33,3 +33,9 @@
 .page-options.dark .separator{
     border: 1px solid white;
 }
+
+@media (max-width: 500px) {
+    .page-options{
+        right: calc(50% - 142px);
+    }
+}

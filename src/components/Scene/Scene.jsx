@@ -25,11 +25,13 @@ import PlayMusicMessage from '../PlayMusicMessage/PlayMusicMessage'
 import PlayMusicButton from '../PlayMusicButton/PlayMusicButton'
 import Circles from '../Circles/Circles'
 import { ModelContext } from '../../context/ModelGlobalContext'
+import { LanguageContext } from '../../context/LanguageGlobalContext'
 
 const Scene = (props) => {
 	const { viewport } = useThree()
 	const { theme } = useContext(ThemeContext)
-	const { setModelLoaded } = useContext(ModelContext)
+	const { setModelLoaded, quitIntro } = useContext(ModelContext)
+	const { language } = useContext(LanguageContext)
 	const { audioIsPlaying, audioIsLoading, handleStop, handlePlay } =
 		useContext(AudioContext)
 
@@ -54,18 +56,34 @@ const Scene = (props) => {
 
 	const initializingFirstModel = () => {
 		group.current.position.x = viewport.width <= 4 ? 0 : viewport.width / 4
-		group.current.position.z =
-			viewport.width <= 4
-				? viewport.width <= 2
-					? viewport.width / 1.5
-					: viewport.width / 3
-				: viewport.height / 7.5
-		const scale =
-			viewport.width <= 5
-				? viewport.width <= 2
-					? 0.25
-					: 0.3
-				: viewport.width / 14
+
+		let scale
+		if (viewport.width <= 5) {
+			if (viewport.width <= 2) {
+				scale = viewport.height <= 3 ? 0.2 : 0.25
+			} else scale = 0.3
+		} else {
+			scale = viewport.width / 14
+		}
+
+		let positionZ
+		if (viewport.width <= 4) {
+			if (viewport.width <= 2) {
+				positionZ =
+					viewport.height <= 3
+						? viewport.height / 3
+						: viewport.height / 3.5
+			} else positionZ = viewport.height / 3
+		} else {
+			positionZ = viewport.height / 7.5
+		}
+		group.current.position.z = positionZ
+		// group.current.position.z =
+		// viewport.width <= 4
+		// 	? viewport.width <= 2
+		// 		? viewport.height / 2.5
+		// 		: viewport.height / 3
+		// 	: viewport.height / 7.5
 
 		group.current.scale.set(scale, scale, scale)
 	}
@@ -291,6 +309,17 @@ const Scene = (props) => {
 			all: () => {
 				const sections = document.querySelectorAll('.section')
 
+				GSAP.to('.lets-start', {
+					opacity: 0,
+					scrollTrigger: {
+						scroller: '.page-wrapper',
+						trigger: '.hero',
+						start: 'top -10px',
+						end: 'center center',
+						scrub: 0.6,
+					},
+				})
+
 				sections.forEach((section) => {
 					const progressWrapper =
 						section.querySelector('.progress-wrapper')
@@ -360,18 +389,22 @@ const Scene = (props) => {
 
 	useFrame(() => {
 		if (group.current) {
-			const fixButton = document.querySelector('.fix-button')
-			const playButton = document.querySelector('.play-music-button')
-			const top = playButton?.getBoundingClientRect().top
-			const left = playButton?.getBoundingClientRect().left
-			fixButton.style.top = `${top}px`
-			fixButton.style.left = `${left}px`
-			fixButton.style.width = `${
-				playButton?.getBoundingClientRect().width
-			}px`
-			fixButton.style.height = `${
-				playButton?.getBoundingClientRect().height
-			}px`
+			if (location.pathname === '/') {
+				const fixButton = document.querySelector('.fix-button')
+				const playButton = document.querySelector('.play-music-button')
+				const top = playButton?.getBoundingClientRect().top
+				const left = playButton?.getBoundingClientRect().left
+				fixButton.style.top = `${top}px`
+				fixButton.style.left = `${
+					window.innerWidth < 1250 ? left : left - 150
+				}px`
+				fixButton.style.width = `${
+					playButton?.getBoundingClientRect().width
+				}px`
+				fixButton.style.height = `${
+					playButton?.getBoundingClientRect().height
+				}px`
+			}
 
 			lerp.current = GSAP.utils.interpolate(
 				lerp.current,
@@ -384,6 +417,9 @@ const Scene = (props) => {
 	})
 
 	useEffect(() => {
+		setScrollTrigger()
+		window.addEventListener('mousemove', lerpModel)
+
 		setTimeout(() => {
 			document.querySelector('.theme-switch .switch-container').click()
 			setTimeout(() => {
@@ -395,10 +431,6 @@ const Scene = (props) => {
 			}, 50)
 		}, 100)
 
-		if (group.current) {
-			setScrollTrigger()
-			window.addEventListener('mousemove', lerpModel)
-		}
 		return () => {
 			window.removeEventListener('mousemove', lerpModel)
 		}
@@ -434,7 +466,11 @@ const Scene = (props) => {
 						transform
 						occlude
 					>
-						<PlayMusicMessage audioIsPlaying={audioIsPlaying} />
+						<PlayMusicMessage
+							audioIsPlaying={audioIsPlaying}
+							language={language}
+							quitIntro={quitIntro}
+						/>
 					</Html>
 				</group>
 				<group ref={musicButton}>
@@ -449,6 +485,7 @@ const Scene = (props) => {
 						<PlayMusicButton
 							audioIsPlaying={audioIsPlaying}
 							audioIsLoading={audioIsLoading}
+							quitIntro={quitIntro}
 						/>
 					</Html>
 				</group>

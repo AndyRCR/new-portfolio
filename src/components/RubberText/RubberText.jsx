@@ -51,7 +51,6 @@ const RubberText = ({ children }) => {
 		const spans = document.querySelectorAll('.rubber-text span')
 		let t = 0
 		spans.forEach((span) => {
-			console.log(span.style)
 			setTimeout(() => {
 				span.classList.add('bounceIn')
 				setTimeout(() => {

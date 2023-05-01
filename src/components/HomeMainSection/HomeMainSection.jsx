@@ -1,7 +1,8 @@
 import { useContext } from 'react'
+import { LanguageContext } from '../../context/LanguageGlobalContext'
 import Button from '../Button/Button'
 import RubberText from '../RubberText/RubberText'
-import { LanguageContext } from '../../context/LanguageGlobalContext'
+import './HomeMainSection.css'
 
 const HomeMainSection = () => {
 	const { language } = useContext(LanguageContext)
@@ -10,32 +11,31 @@ const HomeMainSection = () => {
 		<section className='hero'>
 			<div className='hero-wrapper'>
 				<div className='hero-main'>
-					{/* <h1 className='hero-main-title'>
-						
-					</h1> */}
-					<div>
-						<RubberText>
-							{language === 'en' ? "Hi! I'm" : 'Hola! Soy'}
-						</RubberText>
-						<RubberText>Andy Canales,</RubberText>
+					<div className='rubber-container'>
 						<RubberText>
 							{language === 'en'
-								? 'Web Developer'
-								: 'Desarrollador Web'}
+								? "Hi! I'm Andy Canales, Web Developer"
+								: 'Hola! Soy Andy Canales, Desarrollador Web'}
 						</RubberText>
 					</div>
 					<p className='hero-main-description'>
-						Full Stack Developer / Analyst Programer
+						{language === 'en'
+							? 'Full Stack Developer / Analyst Programer'
+							: 'Desarrollador Full Stack / Analista Programador'}
 					</p>
 				</div>
 
 				<div className='hero-second'>
-					<Button>Contact me!</Button>
+					<Button>
+						{language === 'en' ? 'Contact me!' : 'Contáctame!'}
+					</Button>
 				</div>
 			</div>
 
 			<div className='lets-start'>
-				<h2 className='lets-start-title'>Let's start!</h2>
+				<h2 className='lets-start-title'>
+					{language === 'en' ? "Let's start!" : 'Empecemos!'}
+				</h2>
 				<svg
 					xmlns='http://www.w3.org/2000/svg'
 					height='24'
