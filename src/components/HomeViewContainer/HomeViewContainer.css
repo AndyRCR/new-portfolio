@@ -43,13 +43,21 @@
 .section{
     position: relative;
     overflow: hidden;
-    padding: 1000px 4%;
+    padding: 100vh 4%;
     margin: 0;
     width: 50%;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     backdrop-filter: blur(4.2px);
     -webkit-backdrop-filter: blur(4.2px);
     transition: .3s;
+}
+
+.third-section.right{
+    padding-bottom: 0;
+}
+
+.third-section .section-container{
+    height: calc(100vh - 80px);
 }
 
 .home-view-container.light .section, .home-view-container.light .last-section{
@@ -117,6 +125,15 @@
     width: 39px;
 	height: 35px;
     border-radius: 29px;
+    transform-origin: top left;
+}
+
+.fix-message{
+    z-index: 50;
+    position: absolute;
+    cursor: pointer;
+    width: 39px;
+	height: 35px;
     transform-origin: top left;
 }
 

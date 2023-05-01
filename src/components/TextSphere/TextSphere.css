@@ -1,0 +1,25 @@
+.text-sphere{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tagcloud{
+    display: inline-block;
+    top: 0;
+    left: 0;
+    font-size: 18px;
+}
+
+.text-sphere span.tagcloud--item{
+    font-weight: 600;
+    user-select: none;
+    will-change: transform, opacity, filter, color !important;
+    transition: .3s;
+    transition-timing-function: linear;
+}
+
+.text-sphere.dark span.tagcloud--item:hover{
+    color: #08fdd8;
+}

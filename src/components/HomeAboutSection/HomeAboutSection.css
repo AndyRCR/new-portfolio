@@ -1,0 +1,36 @@
+.section-title{
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    position: relative;
+    display: inline-block;
+}
+
+.section-content{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 30px;
+}
+
+.section-item-title{
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+}
+
+.tached{
+    position: relative;
+}
+
+.tached::after{
+    content: "";
+    position: absolute;
+    width: 110%;
+    height: 2px;
+    background-color: red;
+    top: 50%;
+    left: -5%;
+}

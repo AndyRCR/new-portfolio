@@ -34,8 +34,12 @@
     font-size: 24px;
 }
 
-.hero .rubber-container{
+.hero .rubber-container.en{
     max-width: 70ch;
+}
+
+.hero .rubber-container.es{
+    max-width: 80ch;
 }
 
 /*Scroll indicator*/
@@ -58,10 +62,6 @@
 }
 
 @media (max-width: 1500px) {
-    .hero .rubber-container{
-        max-width: 60ch;
-    }
-
     .home .hero-main-title{
         font-size: 50px;
         line-height: 50px;
@@ -70,6 +70,14 @@
     .home .hero-main-description{
         font-size: 20px;
     }
+
+    .hero .rubber-container.en{
+        max-width: 60ch;
+    }
+
+    .hero .rubber-container.es{
+        max-width: 70ch;
+    }
 }
 
 @media (max-width: 1000px) {
@@ -77,10 +85,6 @@
         align-items: flex-start;
         justify-content: center;
         width: 100%;
-    }
-
-    .hero .rubber-container{
-        max-width: 65ch;
     }
 
     .hero .hero-wrapper{
@@ -92,6 +96,10 @@
     .hero .hero-main{
         align-items: center;
         text-align: center;
+    }
+
+    .hero .rubber-container.en{
+        max-width: 65ch;
     }
 }
 
@@ -109,12 +117,16 @@
         font-size: 16px;
     }
 
-    .hero .rubber-container{
+    .hero .hero-wrapper {
+        gap: 30px;
+    }
+
+    .hero .rubber-container.en{
         max-width: 48ch;
     }
 
-    .hero .hero-wrapper {
-        gap: 30px;
+    .hero .rubber-container.es{
+        max-width: 45ch;
     }
 }
 
@@ -138,7 +150,11 @@
         flex-direction: row;
     }
 
-    .hero .rubber-container{
+    .hero .rubber-container.en{
         max-width: 30ch;
+    }
+
+    .hero .rubber-container.es{
+        max-width: 34ch;
     }
 }

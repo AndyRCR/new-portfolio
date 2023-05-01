@@ -1,4 +1,8 @@
 .play-music-message-container{
+    scale: 0; 
+}
+
+.message-container{
     position: relative;
     display: flex;
     flex-direction: column;
@@ -8,20 +12,22 @@
     padding: 7px 10px;
     border-radius: 10px;
     font-size: 0.875rem;
-    scale: 0;
     transform-origin: bottom;
     animation: moveUpDown 2s infinite 1s linear;
     transition: .3s;
 }
 
 .play-music-pick{
+    left: calc(50% - 5px);
+    transform: rotate(45deg);
+}
+
+.message-pick{
     background-color: var(--light-main);
     position: absolute;
     width: 10px;
     height: 10px;
     bottom: -5px;
-    left: calc(50% - 5px);
-    transform: rotate(45deg);
     transition: .3s;
 }
 

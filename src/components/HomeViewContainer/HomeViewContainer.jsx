@@ -1,4 +1,5 @@
 import { useContext, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { ThemeContext } from '../../context/ThemeGlobalContext'
 import { AudioContext } from '../../context/AudioGlobalContext'
 import { ModelContext } from '../../context/ModelGlobalContext'
@@ -11,10 +12,24 @@ import './HomeViewContainer.css'
 
 const HomeViewContainer = () => {
 	const { theme } = useContext(ThemeContext)
-	const { modelLoaded } = useContext(ModelContext)
+	const { modelLoaded, setModelLoaded, setNeedLoader } =
+		useContext(ModelContext)
 	const { handleStop, handlePlay, audioIsPlaying } = useContext(AudioContext)
 
 	const bgRef = useRef(null)
+
+	const navigate = useNavigate()
+
+	const handleRedirectionTo = (path) => {
+		if (location.pathname === path) return
+		callLoader()
+		setTimeout(() => navigate(path), 1800)
+	}
+
+	const callLoader = () => {
+		setModelLoaded(false)
+		setNeedLoader(true)
+	}
 
 	const handleMouseEnterButton = () => {
 		if (modelLoaded) {
@@ -65,6 +80,11 @@ const HomeViewContainer = () => {
 				onMouseLeave={handleMouseLeaveButton}
 				onMouseDown={handleMouseDownButton}
 				onMouseUp={handleMouseUpButton}
+			></div>
+
+			<div
+				className='fix-message'
+				onClick={() => handleRedirectionTo('/contact')}
 			></div>
 
 			<div className='page'>

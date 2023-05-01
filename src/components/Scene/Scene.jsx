@@ -26,6 +26,7 @@ import PlayMusicButton from '../PlayMusicButton/PlayMusicButton'
 import Circles from '../Circles/Circles'
 import { ModelContext } from '../../context/ModelGlobalContext'
 import { LanguageContext } from '../../context/LanguageGlobalContext'
+import CatMessage from '../CatMessage/CatMessage'
 
 const Scene = (props) => {
 	const { viewport } = useThree()
@@ -38,6 +39,7 @@ const Scene = (props) => {
 	const ortCamera = useRef()
 	const musicButton = useRef()
 	const musicMessage = useRef()
+	const catMessage = useRef()
 
 	const group = useRef()
 	const model = useGLTF(assets.models.room)
@@ -78,12 +80,6 @@ const Scene = (props) => {
 			positionZ = viewport.height / 7.5
 		}
 		group.current.position.z = positionZ
-		// group.current.position.z =
-		// viewport.width <= 4
-		// 	? viewport.width <= 2
-		// 		? viewport.height / 2.5
-		// 		: viewport.height / 3
-		// 	: viewport.height / 7.5
 
 		group.current.scale.set(scale, scale, scale)
 	}
@@ -404,6 +400,21 @@ const Scene = (props) => {
 				fixButton.style.height = `${
 					playButton?.getBoundingClientRect().height
 				}px`
+
+				const fixmessage = document.querySelector('.fix-message')
+				const catMessage = document.querySelector('.cat-message')
+				const ctop = catMessage?.getBoundingClientRect().top
+				const cleft = catMessage?.getBoundingClientRect().left
+				fixmessage.style.top = `${ctop}px`
+				fixmessage.style.left = `${
+					window.innerWidth < 1250 ? cleft : cleft - 150
+				}px`
+				fixmessage.style.width = `${
+					catMessage?.getBoundingClientRect().width
+				}px`
+				fixmessage.style.height = `${
+					catMessage?.getBoundingClientRect().height
+				}px`
 			}
 
 			lerp.current = GSAP.utils.interpolate(
@@ -458,6 +469,17 @@ const Scene = (props) => {
 				position={[0, 2, 3]}
 			/>
 			<group name='Scene' rotation={[0, -Math.PI / 4, 0]} ref={group}>
+				<group ref={catMessage}>
+					<Html
+						rotation-y={Math.PI / 4}
+						distanceFactor={1}
+						position={[-1.55, 1, -1.25]}
+						transform
+						occlude
+					>
+						<CatMessage language={language} />
+					</Html>
+				</group>
 				<group ref={musicMessage}>
 					<Html
 						rotation-y={Math.PI / 4}

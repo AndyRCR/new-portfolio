@@ -11,7 +11,7 @@ const HomeMainSection = () => {
 		<section className='hero'>
 			<div className='hero-wrapper'>
 				<div className='hero-main'>
-					<div className='rubber-container'>
+					<div className={`rubber-container ${language}`}>
 						<RubberText>
 							{language === 'en'
 								? "Hi! I'm Andy Canales, Web Developer"

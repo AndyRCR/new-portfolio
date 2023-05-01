@@ -1,0 +1,20 @@
+.cat-message{
+    opacity: 0;
+}
+
+.cat-message .message-container{
+    text-align: center;
+}
+
+.cat-message .message-pick{
+    z-index: -1;
+    width: 18px;
+    height: 18px;
+    right: -3px;
+    bottom: 2px;
+    /* -webkit-transform: rotate(45deg) skew(15deg, 15deg);
+    -moz-transform: rotate(45deg) skew(15deg, 15deg);
+    -ms-transform: rotate(45deg) skew(15deg, 15deg);
+    -o-transform: rotate(45deg) skew(15deg, 15deg); */
+    transform: rotate(-25deg) skew(0deg, 15deg);
+}

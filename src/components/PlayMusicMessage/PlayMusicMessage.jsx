@@ -57,8 +57,8 @@ const PlayMusicMessage = ({ audioIsPlaying, language, quitIntro }) => {
 	}, [quitIntro])
 
 	return (
-		<div className='play-music-message'>
-			<div className='play-music-message-container'>
+		<div className='play-music-message message'>
+			<div className='play-music-message-container message-container'>
 				{audioIsPlaying
 					? 'F. Chopin - Nocturne Op9 No2 ♫'
 					: `${
@@ -66,7 +66,7 @@ const PlayMusicMessage = ({ audioIsPlaying, language, quitIntro }) => {
 								? 'I play you a song'
 								: '¿Te toco una canción'
 					  }? 😁`}
-				<div className='play-music-pick'></div>
+				<div className='play-music-pick message-pick'></div>
 			</div>
 		</div>
 	)

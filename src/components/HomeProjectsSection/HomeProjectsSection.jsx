@@ -1,3 +1,4 @@
+import ProjectSlider from '../ProjectSlider/ProjectSlider'
 import './HomeProjectsSection.css'
 
 const HomeProjectsSection = () => {
@@ -6,7 +7,18 @@ const HomeProjectsSection = () => {
 			<div className='progress-wrapper progress-bar-wrapper-right'>
 				<div className='progress-bar'></div>
 			</div>
-			<h1 className='section-title'>Projects</h1>
+			<div className='section-container'>
+				<h2 className='section-title'>Latest Projects</h2>
+				<div className='section-content'>
+					<div className='section-item'>
+						<p>
+							Latest developed projects,{' '}
+							<span>see more about them here.</span>
+						</p>
+					</div>
+				</div>
+				<ProjectSlider />
+			</div>
 		</section>
 	)
 }
