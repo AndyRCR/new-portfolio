@@ -52,12 +52,13 @@
     transition: .3s;
 }
 
-.third-section.right{
+.third-section{
     padding-bottom: 0;
+    text-align: center;
 }
 
 .third-section .section-container{
-    height: calc(100vh - 80px);
+    height: calc(100vh - 100px);
 }
 
 .home-view-container.light .section, .home-view-container.light .last-section{
@@ -159,5 +160,16 @@
     .home-view-container .progress-bar-wrapper-left{
         right: 0;
         left: auto;
+    }
+
+    .fix-message{
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .third-section .section-container{
+        height: auto;
+        margin-bottom: 50px;
     }
 }

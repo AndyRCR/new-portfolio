@@ -3,7 +3,6 @@
     font-weight: 700;
     margin-bottom: 2rem;
     position: relative;
-    display: inline-block;
 }
 
 .section-content{
@@ -18,7 +17,15 @@
     font-weight: 700;
     margin-bottom: 1rem;
     position: relative;
-    display: inline-block;
+}
+
+.section-item p{
+    min-height: 100px;
+    text-align: justify;
+}
+
+.third-section .section-item p{
+    min-height: auto;
 }
 
 .tached{
@@ -33,4 +40,30 @@
     background-color: red;
     top: 50%;
     left: -5%;
+}
+
+@media (max-width: 1000px){
+    .section-container{
+        padding: 0 8%;
+    }
+}
+
+@media (max-width: 600px){
+    .section-title{
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .section-item-title{
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    .section-content p{
+        font-size: 14px;
+    }
+
+    .section-item p, .third-section .section-item p{
+        min-height: auto;
+    }
 }

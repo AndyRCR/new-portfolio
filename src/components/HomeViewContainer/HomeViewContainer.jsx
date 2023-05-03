@@ -9,6 +9,7 @@ import HomeAboutSection from '../HomeAboutSection/HomeAboutSection'
 import HomeSkillsSection from '../HomeSkillsSection/HomeSkillsSection'
 import HomeProjectsSection from '../HomeProjectsSection/HomeProjectsSection'
 import './HomeViewContainer.css'
+import useRedirection from '../../hooks/useRedirection'
 
 const HomeViewContainer = () => {
 	const { theme } = useContext(ThemeContext)
@@ -20,16 +21,7 @@ const HomeViewContainer = () => {
 
 	const navigate = useNavigate()
 
-	const handleRedirectionTo = (path) => {
-		if (location.pathname === path) return
-		callLoader()
-		setTimeout(() => navigate(path), 1800)
-	}
-
-	const callLoader = () => {
-		setModelLoaded(false)
-		setNeedLoader(true)
-	}
+	const { handleRedirectionTo } = useRedirection()
 
 	const handleMouseEnterButton = () => {
 		if (modelLoaded) {

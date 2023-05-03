@@ -34,9 +34,11 @@ const CatMessage = ({ language }) => {
 	return (
 		<div className='cat-message message'>
 			<div className='cat-message-container message-container'>
-				Pssst, for contact him,
+				{language === 'en'
+					? 'Pssst, for contact him,'
+					: 'Pssst, para contactarlo'}
 				<br />
-				click here!
+				{language === 'en' ? 'click here!' : 'haz click aquí!'}
 				<div className='cat-message-pick message-pick'></div>
 			</div>
 		</div>

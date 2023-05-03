@@ -1,18 +1,8 @@
 import TagCloud from 'TagCloud'
-import { useEffect } from 'react'
-import './TextSphere.css'
+import { useEffect, useRef } from 'react'
 import { useContext } from 'react'
 import { ThemeContext } from '../../context/ThemeGlobalContext'
-
-const radiusValue = () => {
-	let radii
-	if (window.innerWidth <= 1000) {
-		radii = 200
-	} else {
-		radii = 220
-	}
-	return radii
-}
+import './TextSphere.css'
 
 const container = '.tagcloud'
 
@@ -35,17 +25,46 @@ const texts = [
 
 const TextSphere = ({ radius }) => {
 	const { theme } = useContext(ThemeContext)
+	const sphere = useRef()
+
+	const handleResizeSphere = () => {
+		let tagCloud
+		if (window.innerWidth <= 550) {
+			sphere.current.destroy()
+
+			tagCloud = TagCloud(container, texts, {
+				radius: 160,
+				maxSpeed: 'fast',
+				initSpeed: 'fast',
+				keep: false,
+			})
+		} else {
+			sphere.current.destroy()
+
+			tagCloud = TagCloud(container, texts, {
+				radius: 220,
+				maxSpeed: 'fast',
+				initSpeed: 'fast',
+				keep: false,
+			})
+		}
+		sphere.current = tagCloud
+	}
 
 	useEffect(() => {
+		window.addEventListener('resize', handleResizeSphere)
+
 		const tagCloud = TagCloud(container, texts, {
-			radius: radius || radiusValue(),
+			radius: window.innerWidth <= 550 ? 160 : 220,
 			maxSpeed: 'fast',
 			initSpeed: 'fast',
 			keep: false,
 		})
+		sphere.current = tagCloud
 
 		return () => {
-			tagCloud.destroy()
+			window.removeEventListener('resize', handleResizeSphere)
+			sphere.current.destroy()
 		}
 	}, [])
 

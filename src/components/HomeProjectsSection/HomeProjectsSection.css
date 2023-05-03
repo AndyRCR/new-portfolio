@@ -1,0 +1,18 @@
+.buttons-section{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.third-section .section-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (max-width: 600px){
+    .buttons-section{
+        flex-direction: column;
+        align-items: center;
+    }
+}

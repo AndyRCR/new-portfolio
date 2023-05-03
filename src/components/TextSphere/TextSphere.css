@@ -23,3 +23,9 @@
 .text-sphere.dark span.tagcloud--item:hover{
     color: #08fdd8;
 }
+
+@media (max-width: 550px){
+    .tagcloud{
+        font-size: 14px;
+    }
+}

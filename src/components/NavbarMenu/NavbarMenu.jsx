@@ -1,24 +1,14 @@
 import { useContext } from 'react'
 import { ThemeContext } from '../../context/ThemeGlobalContext'
-import { Link, useNavigate } from 'react-router-dom'
-import { ModelContext } from '../../context/ModelGlobalContext'
+import { Link } from 'react-router-dom'
+import useRedirection from '../../hooks/useRedirection'
+import { LanguageContext } from '../../context/LanguageGlobalContext'
 import './NavbarMenu.css'
 
 const NavbarMenu = ({ theme }) => {
-	const { setNeedLoader, setModelLoaded } = useContext(ModelContext)
+	const { language } = useContext(LanguageContext)
 
-	const navigate = useNavigate()
-
-	const handleRedirectionTo = (path) => {
-		if (location.pathname === path) return
-		callLoader()
-		setTimeout(() => navigate(path), 1800)
-	}
-
-	const callLoader = () => {
-		setModelLoaded(false)
-		setNeedLoader(true)
-	}
+	const { handleRedirectionTo } = useRedirection()
 
 	return (
 		<div className={`navbar-menu ${theme}`}>
@@ -27,25 +17,25 @@ const NavbarMenu = ({ theme }) => {
 					className='navbar-menu-list-item'
 					onClick={() => handleRedirectionTo('/')}
 				>
-					About me
+					{language === 'en' ? 'About me' : 'Acerca de mí'}
 				</li>
 				<li
 					className='navbar-menu-list-item'
 					onClick={() => handleRedirectionTo('/')}
 				>
-					Skills
+					{language === 'en' ? 'Skills' : 'Habilidades'}
 				</li>
 				<li
 					className='navbar-menu-list-item'
 					onClick={() => handleRedirectionTo('/')}
 				>
-					Projects
+					{language === 'en' ? 'Projects' : 'Proyectos'}
 				</li>
 				<li
 					className='navbar-menu-list-item last'
 					onClick={() => handleRedirectionTo('/contact')}
 				>
-					Contact
+					{language === 'en' ? 'Contact' : 'Contacto'}
 				</li>
 			</ul>
 		</div>

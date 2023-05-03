@@ -51,16 +51,11 @@ const RubberText = ({ children }) => {
 		const spans = document.querySelectorAll('.rubber-text span')
 		let t = 0
 		spans.forEach((span) => {
-			setTimeout(() => {
+			const timeout = setTimeout(() => {
 				span.classList.add('bounceIn')
-				setTimeout(() => {
+				const timeout2 = setTimeout(() => {
 					span.classList.remove('bounceIn')
 					span.style.opacity = '1'
-					span.style.transition = '.2s'
-					span.style.color =
-						theme === 'light'
-							? '#000 !important'
-							: '#fff !important'
 				}, 740)
 			}, t)
 			t += 50
@@ -70,7 +65,6 @@ const RubberText = ({ children }) => {
 	const restartLetters = () => {
 		const spans = document.querySelectorAll('.rubber-text span')
 		spans.forEach((span) => {
-			span.style.transition = '0'
 			span.style.opacity = '0'
 		})
 		setTimeout(bounceEffect, 200)

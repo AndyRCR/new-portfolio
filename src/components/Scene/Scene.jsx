@@ -316,7 +316,7 @@ const Scene = (props) => {
 					},
 				})
 
-				sections.forEach((section) => {
+				sections.forEach((section, i) => {
 					const progressWrapper =
 						section.querySelector('.progress-wrapper')
 					const progressBar = section.querySelector('.progress-bar')
@@ -333,16 +333,18 @@ const Scene = (props) => {
 							},
 						})
 
-						GSAP.to(section, {
-							borderBottomLeftRadius: 700,
-							scrollTrigger: {
-								scroller: '.page-wrapper',
-								trigger: section,
-								start: 'bottom bottom',
-								end: 'bottom top',
-								scrub: 0.6,
-							},
-						})
+						if (i !== 2) {
+							GSAP.to(section, {
+								borderBottomLeftRadius: 700,
+								scrollTrigger: {
+									scroller: '.page-wrapper',
+									trigger: section,
+									start: 'bottom bottom',
+									end: 'bottom top',
+									scrub: 0.6,
+								},
+							})
+						}
 					} else {
 						GSAP.to(section, {
 							borderTopRightRadius: 10,
