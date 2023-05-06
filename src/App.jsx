@@ -1,9 +1,12 @@
 import ThemeGlobalContext from './context/ThemeGlobalContext'
 import AudioGlobalContext from './context/AudioGlobalContext'
 import ModelGlobalContext from './context/ModelGlobalContext'
+import LanguageGlobalContext from './context/LanguageGlobalContext'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 import Rutas from './routes/Rutas'
 import './App.css'
-import LanguageGlobalContext from './context/LanguageGlobalContext'
+import ProjectGlobalContext from './context/ProjectGlobalContext'
 
 function App() {
 	return (
@@ -11,7 +14,9 @@ function App() {
 			<LanguageGlobalContext>
 				<ModelGlobalContext>
 					<AudioGlobalContext>
-						<Rutas />
+						<ProjectGlobalContext>
+							<Rutas />
+						</ProjectGlobalContext>
 					</AudioGlobalContext>
 				</ModelGlobalContext>
 			</LanguageGlobalContext>

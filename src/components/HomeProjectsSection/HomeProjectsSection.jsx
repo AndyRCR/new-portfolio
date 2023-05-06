@@ -1,11 +1,14 @@
 import { useContext } from 'react'
 import ProjectSlider from '../ProjectSlider/ProjectSlider'
 import { LanguageContext } from '../../context/LanguageGlobalContext'
+import useRedirection from '../../hooks/useRedirection'
 import Button from '../Button/Button'
 import './HomeProjectsSection.css'
 
 const HomeProjectsSection = () => {
 	const { language } = useContext(LanguageContext)
+
+	const { handleRedirectionTo } = useRedirection()
 
 	const downloadCV = () => {
 		const link = document.createElement('a')
@@ -31,7 +34,10 @@ const HomeProjectsSection = () => {
 							{language === 'en'
 								? 'Latest developed projects, '
 								: 'Últimos proyectos desarrollados, '}
-							<span className='link'>
+							<span
+								className='link'
+								onClick={() => handleRedirectionTo('/projects')}
+							>
 								{language === 'en'
 									? 'see more about them here.'
 									: 'vea más sobre ellos aquí.'}
@@ -46,7 +52,7 @@ const HomeProjectsSection = () => {
 				</h2>
 
 				<div className='buttons-section'>
-					<Button>
+					<Button onClick={() => handleRedirectionTo('/contact')}>
 						{language === 'en' ? 'Contact me' : 'Contáctame'}
 					</Button>
 					<Button onClick={downloadCV}>

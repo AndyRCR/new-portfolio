@@ -11,6 +11,22 @@
     border-radius: 0 0 20px 20px;
 }
 
+.page-options .navbar-button{
+    cursor: pointer;
+    display: flex;
+    position: sticky;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+}
+
+.page-options .navbar-button > div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .page-options.light{
     background-color: var(--light-secondary);
     border: 1px solid #d8d8d8;
@@ -19,6 +35,10 @@
 .page-options.dark{
     background-color: var(--dark-secondary);
     border: 1px solid var(--dark-secondary);
+}
+
+.page-options .mobile{
+    display: none;
 }
 
 .page-options .separator{
@@ -34,8 +54,18 @@
     border: 1px solid white;
 }
 
+@media (max-width: 1250px){
+    .page-options .mobile{
+        display: flex;
+    }
+}
+
 @media (max-width: 500px) {
     .page-options{
-        right: calc(50% - 142px);
+        width: 100%;
+        justify-content: space-between;
+        right: 0;
+        border-radius: 0;
+        padding: 20px 20px;
     }
 }

@@ -8,6 +8,10 @@
     transition: .3s;
 }
 
+.navbar-menu .navbar-menu-list-item.active{
+    color: #08fdd8;
+}
+
 .navbar-menu.light .navbar-menu-list-item{
     border-top: 1px solid #d8d8d8;
 }

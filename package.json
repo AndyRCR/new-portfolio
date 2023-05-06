@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "vercel-build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -23,8 +24,7 @@
     "react-router-dom": "^6.10.0",
     "react-slick": "^0.29.0",
     "slick-carousel": "^1.8.1",
-    "TagCloud": "^2.3.2",
-    "vanta": "^0.5.24"
+    "TagCloud": "^2.3.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

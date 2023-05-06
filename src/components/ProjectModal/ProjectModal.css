@@ -1,0 +1,121 @@
+.project-modal{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.project-modal .project-modal-container{
+    position: relative;
+    padding: 40px;
+    background-color: white;
+    width: 80%;
+    height: 90%;
+    border-radius: 30px;
+    transform-origin: center;
+    scale: 0;
+    overflow-y: scroll;
+}
+
+.project-modal.light .project-modal-container{
+    background-color: #fff;
+    color: #000;
+}
+
+.project-modal.dark .project-modal-container{
+    background-color: var(--dark-container);
+    color: #fff;
+}
+
+.project-modal .project-modal-close{
+    position: sticky;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.project-modal svg{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.project-modal.light svg{
+    fill: #000;
+}
+
+.project-modal.dark svg{
+    fill: #fff;
+}
+
+.project-modal .project-modal-title{
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.project-modal ul{
+    list-style: disc;
+    margin-left: 30px;
+}
+
+.project-modal .project-modal-body{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.project-modal .project-modal-description{
+    text-align: justify;
+    margin: auto;
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.project-modal .project-modal-image-container{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.project-modal img{
+    width: 100%;
+    max-width: 1024px;
+    border-radius: 20px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+@media (max-width: 900px){
+    .project-modal .project-modal-container{
+        width: 95%;
+    }
+}
+
+@media (max-width: 700px){
+    .project-modal .project-modal-description{
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 500px){
+    .project-modal .project-modal-container{
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
+}
+
+@media (max-width: 400px){
+    .project-modal .project-modal-description{
+        font-size: 14px;
+    }
+}

@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useRef } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
-import assets from '../../utils/assets'
 import { ModelContext } from '../../context/ModelGlobalContext'
+import catmodel from '../../assets/models/catmodel.glb'
+import assets from '../../utils/assets'
 
-export const Cat = (props) => {
+const Cat = (props) => {
 	const group = useRef()
-	const { nodes, materials, animations } = useGLTF(assets.models.catmodel)
+	const { nodes, materials, animations } = useGLTF(catmodel)
 	const { actions } = useAnimations(animations, group)
 
 	useEffect(() => {
@@ -104,4 +105,6 @@ export const Cat = (props) => {
 	)
 }
 
-useGLTF.preload(assets.models.catmodel)
+useGLTF.preload(catmodel)
+
+export default Cat

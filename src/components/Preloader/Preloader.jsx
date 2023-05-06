@@ -109,7 +109,7 @@ const Preloader = () => {
 				</div>
 			</div>
 
-			<div className='preloader-arrow'>
+			<div className='preloader-arrow' onClick={secondIntro}>
 				<svg
 					xmlns='http://www.w3.org/2000/svg'
 					height='48'

@@ -10,6 +10,24 @@
     transition: .3s;
 }
 
+.navbar .navbar-button.mobile{
+    cursor: pointer;
+    display: none;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 35px;
+    height: 35px;
+}
+
+.navbar.light .navbar-button{
+    color: #000;
+}
+
+.navbar.dark .navbar-button{
+    color: #fff;
+}
+
 .navbar.dark{
     border-right: 1px solid var(--dark-section);
     background-color: var(--dark-secondary);
@@ -17,7 +35,7 @@
 
 .navbar.light{
     border-right: 1px solid #d8d8d8;
-    /* background-color: var(--light-secondary); */
+    background-color: #fff;
 }
 
 .navbar .navbar-logo{
@@ -43,7 +61,7 @@
 }
 
 .navbar .logo{
-    width: 100%;
+    width: 150px;
     cursor: pointer;
     transition: .3s;
 }
@@ -67,6 +85,26 @@
 
 @media (max-width: 1250px) {
     .navbar{
-        display: none;
+        width: 100%;
+        transition: .5s ease-in-out;
+        bottom: 0;
+        z-index: 99999999;
+    }
+
+    .navbar .logo{
+        width: 120px;
+    }
+
+    .navbar.dark .navbar-logo,
+    .navbar.light .navbar-logo{
+        padding-top: 30px;
+        width: 100%;
+        border: none;
+    }
+
+    .navbar .navbar-button.mobile{
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }

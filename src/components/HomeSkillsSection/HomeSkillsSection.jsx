@@ -1,9 +1,12 @@
 import { useContext } from 'react'
 import TextSphere from '../TextSphere/TextSphere'
 import { LanguageContext } from '../../context/LanguageGlobalContext'
+import useRedirection from '../../hooks/useRedirection'
 
 const HomeSkillsSection = () => {
 	const { language } = useContext(LanguageContext)
+
+	const { handleRedirectionTo } = useRedirection()
 
 	return (
 		<section className='second-section section left'>
@@ -39,7 +42,10 @@ const HomeSkillsSection = () => {
 							React Three Fiber y gsap.`}
 							<br />
 							<br />
-							<span className='link'>
+							<span
+								className='link'
+								onClick={() => handleRedirectionTo('/skills')}
+							>
 								{language === 'en'
 									? 'See my full techs stack here.'
 									: 'Mira mi stack entero de tecnologías aquí.'}

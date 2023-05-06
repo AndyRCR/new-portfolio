@@ -1,0 +1,25 @@
+.skills-view-container p{
+    width: 100%;
+}
+
+.skills-view-container .container-content,
+.skills-view-container .skills-view-media{
+    width: 45%;
+}
+
+@media (max-height: 1000px){
+    main:has(.skills-view-container){
+        height: auto;
+    }
+
+    .skills-view-container .container-content,
+    .skills-view-container .skills-view-media{
+    width: 100%;
+}
+}
+
+@media (max-height: 800px){
+    main:has(.skills-view-container){
+        height: auto;
+    }
+}

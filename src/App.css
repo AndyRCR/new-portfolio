@@ -1,8 +1,11 @@
 .view-container{
     position: relative;
     width: 100%;
-    height: 100%;
     margin-left: 150px;
+}
+
+.view-container:not(:has(.container)){
+    height: 100%;
 }
 
 .view{

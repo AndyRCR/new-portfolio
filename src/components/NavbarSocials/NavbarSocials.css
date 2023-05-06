@@ -26,8 +26,20 @@
     scale: 1.4;
 }
 
-@media (max-height: 800px) {
+@media (max-width: 1250px) {
     .navbar-socials ul{
-        gap: 5px;
+        flex-direction: row;
+        justify-content: center;
+        gap: 60px;
+    }
+
+    .navbar-socials{
+        margin-bottom: 80px;
+    }
+}
+
+@media (max-height: 800px) {
+    .navbar-socials{
+        margin-bottom: 40px;
     }
 }

@@ -117,6 +117,25 @@
     background-color: var(--light-section);
 }
 
+/*Span links*/
+span.link{
+    font-weight: 700;
+    cursor: pointer;
+    transition: .3s;
+}
+
+span.link a{
+    color: inherit;
+}
+
+.light span.link{
+    color: var(--dark-section);
+}
+
+.dark span.link{
+    color: #08fdd8;
+}
+
 /*Fix play button*/
 
 .fix-button{

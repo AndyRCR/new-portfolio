@@ -3,9 +3,12 @@ import { LanguageContext } from '../../context/LanguageGlobalContext'
 import Button from '../Button/Button'
 import RubberText from '../RubberText/RubberText'
 import './HomeMainSection.css'
+import useRedirection from '../../hooks/useRedirection'
 
 const HomeMainSection = () => {
 	const { language } = useContext(LanguageContext)
+
+	const { handleRedirectionTo } = useRedirection()
 
 	return (
 		<section className='hero'>
@@ -26,7 +29,7 @@ const HomeMainSection = () => {
 				</div>
 
 				<div className='hero-second'>
-					<Button>
+					<Button onClick={() => handleRedirectionTo('/contact')}>
 						{language === 'en' ? 'Contact me!' : 'Contáctame!'}
 					</Button>
 				</div>

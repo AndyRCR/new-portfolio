@@ -1,9 +1,12 @@
 import { useContext } from 'react'
 import './HomeAboutSection.css'
 import { LanguageContext } from '../../context/LanguageGlobalContext'
+import useRedirection from '../../hooks/useRedirection'
 
 const HomeAboutSection = () => {
 	const { language } = useContext(LanguageContext)
+
+	const { handleRedirectionTo } = useRedirection()
 
 	return (
 		<section className='first-section section right'>
@@ -34,10 +37,13 @@ const HomeAboutSection = () => {
 								projects. `
 								: `Soy un desarrollador Full Stack ubicado en Perú
 								apasionado por crear sitios web llamativos, responsivos, 
-								funcionales, y todos los procesos que lo conlleva.
+								funcionales, y todos los procesos que los conllevan.
 								Tengo una sólida experiencia en proyectos de requisitos complejos,
 								detallados y altamente personalizados. `}
-							<span className='section-link'>
+							<span
+								className='link'
+								onClick={() => handleRedirectionTo('/about')}
+							>
 								{language === 'en'
 									? 'Know me better here.'
 									: 'Conóceme mejor aquí.'}

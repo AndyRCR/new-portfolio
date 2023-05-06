@@ -5,16 +5,7 @@ import PageOptions from './PageOptions/PageOptions'
 import Preloader from './Preloader/Preloader'
 import Loader from './Loader/Loader'
 import { ModelContext } from '../context/ModelGlobalContext'
-
-const styles = {
-	mainContainer: {
-		position: 'relative',
-		width: '100vw',
-		height: '100vh',
-		display: 'flex',
-		overflow: 'hidden',
-	},
-}
+import ProjectModal from './ProjectModal/ProjectModal'
 
 const Layout = () => {
 	const { quitIntro, needLoader } = useContext(ModelContext)
@@ -23,7 +14,8 @@ const Layout = () => {
 		<React.Fragment>
 			<Preloader />
 			<PageOptions />
-			<main style={styles.mainContainer} className='main-container'>
+			<ProjectModal />
+			<main className='main-container'>
 				<Navbar />
 				<div className='view-container'>
 					{needLoader ? <Loader /> : false}

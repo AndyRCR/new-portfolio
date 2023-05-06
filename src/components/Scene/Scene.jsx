@@ -13,7 +13,7 @@ import { useFrame, useThree } from '@react-three/fiber'
 import { ScrollTrigger } from 'gsap/ScrollTrigger.js'
 import { ThemeContext } from '../../context/ThemeGlobalContext'
 import { AudioContext } from '../../context/AudioGlobalContext'
-import { Cat } from '../Cat/Cat'
+import Cat from '../Cat/Cat'
 
 import assets from '../../utils/assets'
 import AudioPopup from '../AudioPopup/AudioPopup'
@@ -30,7 +30,7 @@ import CatMessage from '../CatMessage/CatMessage'
 
 const Scene = (props) => {
 	const { viewport } = useThree()
-	const { theme } = useContext(ThemeContext)
+	const { theme, isDesktop } = useContext(ThemeContext)
 	const { setModelLoaded, quitIntro } = useContext(ModelContext)
 	const { language } = useContext(LanguageContext)
 	const { audioIsPlaying, audioIsLoading, handleStop, handlePlay } =
@@ -86,6 +86,10 @@ const Scene = (props) => {
 
 	const setScrollTrigger = () => {
 		GSAP.registerPlugin(ScrollTrigger)
+		ScrollTrigger.config({
+			autoRefreshEvents: 'visibilitychange,DOMContentLoaded,load',
+			ignoreMobileResize: true,
+		})
 		ScrollTrigger.matchMedia({
 			//Desktop
 			'(min-width: 1001px)': () => {
@@ -441,7 +445,7 @@ const Scene = (props) => {
 					.click()
 
 				setModelLoaded(true)
-			}, 50)
+			}, 10)
 		}, 100)
 
 		return () => {
@@ -517,7 +521,7 @@ const Scene = (props) => {
 				<Glass nodes={model.nodes} />
 				<Screen nodes={model.nodes} />
 				<Lights nodes={model.nodes} />
-				<Cat />
+				{isDesktop && <Cat />}
 				<Circles theme={theme} />
 			</group>
 		</group>
