@@ -20,7 +20,6 @@
     align-items: center;
     cursor: pointer;
     overflow: hidden;
-    transition: .2s linear;
 }
 
 .button-text{
@@ -35,7 +34,6 @@
     pointer-events: none;
     font-size: 14px;
     font-weight: 600;
-    transition: .3s;
 }
 
 .button::before{

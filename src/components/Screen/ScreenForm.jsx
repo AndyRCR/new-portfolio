@@ -1,10 +1,15 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Html } from '@react-three/drei'
 import { MeshBasicMaterial, Box3 } from 'three'
 import ContactForm from '../ContactForm/ContactForm'
+import { ThemeContext } from '../../context/ThemeGlobalContext'
+import { LanguageContext } from '../../context/LanguageGlobalContext'
 import { useFrame } from '@react-three/fiber'
 
 const ScreenForm = ({ nodes, display }) => {
+	const { theme } = useContext(ThemeContext)
+	const { language } = useContext(LanguageContext)
+
 	return (
 		<React.Fragment>
 			<mesh
@@ -21,7 +26,11 @@ const ScreenForm = ({ nodes, display }) => {
 				transform
 				occlude
 			>
-				<ContactForm display={display} />
+				<ContactForm
+					display={display}
+					theme={theme}
+					language={language}
+				/>
 			</Html>
 		</React.Fragment>
 	)

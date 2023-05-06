@@ -26,7 +26,7 @@ const filterAnimations = (animations) => {
 
 const Scene = (props) => {
 	const { viewport } = useThree()
-	const { theme } = useContext(ThemeContext)
+	const { theme, isDesktop } = useContext(ThemeContext)
 	const { modelLoaded, setModelLoaded } = useContext(ModelContext)
 
 	const perspCamera = useRef()
@@ -60,10 +60,10 @@ const Scene = (props) => {
 	useEffect(() => {
 		if (group.current) {
 			playAnimations()
-			window.addEventListener('mousemove', lerpCamera)
+			// isDesktop && window.addEventListener('mousemove', lerpCamera)
 		}
 		return () => {
-			window.removeEventListener('mousemove', lerpCamera)
+			// isDesktop && window.removeEventListener('mousemove', lerpCamera)
 		}
 	}, [])
 
