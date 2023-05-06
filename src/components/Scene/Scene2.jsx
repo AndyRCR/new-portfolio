@@ -60,10 +60,10 @@ const Scene = (props) => {
 	useEffect(() => {
 		if (group.current) {
 			playAnimations()
-			// isDesktop && window.addEventListener('mousemove', lerpCamera)
+			isDesktop && window.addEventListener('mousemove', lerpCamera)
 		}
 		return () => {
-			// isDesktop && window.removeEventListener('mousemove', lerpCamera)
+			isDesktop && window.removeEventListener('mousemove', lerpCamera)
 		}
 	}, [])
 

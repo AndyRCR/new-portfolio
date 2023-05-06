@@ -1,4 +1,5 @@
 import { createContext, useState } from 'react'
+import nocturne from '../assets/audio/nocturne.mp3'
 import { Howl } from 'howler'
 
 export const AudioContext = createContext()
@@ -23,9 +24,7 @@ const AudioGlobalContext = ({ children }) => {
 		if (!audioLoaded) {
 			setAudioIsLoading(true)
 			const newSound = new Howl({
-				src: [
-					'https://a-canales.s3.us-east-2.amazonaws.com/audio/nocturne.mp3',
-				],
+				src: [nocturne],
 				onplay: () => {
 					setAudioIsLoading(false)
 					setAudioIsPlaying(true)

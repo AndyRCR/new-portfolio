@@ -2,6 +2,13 @@
     min-height: 100vh;
 }
 
+.about-view-media{
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
 .container {
 	display: flex;
 	align-items: center;
@@ -32,7 +39,7 @@
 	font-weight: 500;
 	margin-top: 20px;
 	text-align: justify;
-	width: 70%;
+	max-width: 750px;
 }
 
 .imageContainer {
@@ -150,9 +157,15 @@
 	}
 }
 
+@media (min-width: 1500px) {
+	.about-view-media{
+		margin-right: 100px;
+	}
+}
+
 @media (max-width: 1500px){
     .container p {
-        width: 85%;
+        width: 100%;
     }
 
     .container{
