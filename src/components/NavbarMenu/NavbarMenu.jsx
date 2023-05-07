@@ -38,7 +38,7 @@ const NavbarMenu = ({ theme }) => {
 					{language === 'en' ? 'Projects' : 'Proyectos'}
 				</li>
 				<li
-					className={`navbar-menu-list-item ${
+					className={`navbar-menu-list-item last ${
 						location.pathname === '/contact' ? 'active' : ''
 					}`}
 					onClick={() => handleRedirectionTo('/contact')}

@@ -36,10 +36,18 @@
     content: "";
     position: absolute;
     width: 110%;
-    height: 2px;
-    background-color: red;
+    height: 3px;
     top: 50%;
     left: -5%;
+    border-radius: 2;
+}
+
+.light .tached::after{
+    background-color: #fff;
+}
+
+.dark .tached::after{
+    background-color: #08fdd8;
 }
 
 @media (max-width: 1000px){
