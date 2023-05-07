@@ -146,6 +146,29 @@
 	height: 40px;
 }
 
+/*Form modal*/
+.modal-button{
+	background-color: var(--dark-container) !important;
+}
+
+.modal-button:focus{
+	box-shadow: none !important;
+}
+
+.modal-popup{
+	border-radius: 20px !important;
+}
+
+.contact-form.light .loader div{
+	border: 2px solid #000;
+	border-color: #000 transparent transparent transparent;
+}
+
+.contact-form.light .button-container:hover .loader div{
+	border: 2px solid #fff;
+	border-color: #fff transparent transparent transparent;
+}
+
 /*Scrollbar*/
 
 .contact-form::-webkit-scrollbar {

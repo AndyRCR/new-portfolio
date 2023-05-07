@@ -1,17 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
 import Lottie from 'lottie-react'
 import lottiecat from '../../assets/lotties/cat.json'
+import useMail from '../../hooks/useMail'
 import './ContactForm.css'
 
 const ContactForm = ({ display, theme, language }) => {
 	const [timerId, setTimerId] = useState(null)
-	const [user, setUser] = useState({
-		name: '',
-		email: '',
-		subject: '',
-		message: '',
-	})
 	const lottieRef = useRef(null)
+
+	const { mail, setMail, sendMail, isLoading } = useMail(language)
 
 	/**
 	 * General handlers
@@ -45,10 +42,7 @@ const ContactForm = ({ display, theme, language }) => {
 
 	const handleChange = (e) => {
 		const { name, value } = e.target
-		setUser({ ...user, [name]: value })
-
-		const widthPercentage = (e.target.value.length / 22) * 100
-		console.log(widthPercentage)
+		setMail({ ...mail, [name]: value })
 	}
 
 	/**
@@ -121,7 +115,7 @@ const ContactForm = ({ display, theme, language }) => {
 								onFocus={handleFocus}
 								onBlur={handleBlur}
 								onChange={handleChange}
-								value={user.name}
+								value={mail.name}
 								autoComplete='off'
 								type='text'
 								name='name'
@@ -137,7 +131,7 @@ const ContactForm = ({ display, theme, language }) => {
 								onFocus={handleFocus}
 								onBlur={handleBlur}
 								onChange={handleChange}
-								value={user.email}
+								value={mail.email}
 								autoComplete='off'
 								type='email'
 								name='email'
@@ -155,7 +149,7 @@ const ContactForm = ({ display, theme, language }) => {
 								onFocus={handleFocus}
 								onBlur={handleBlur}
 								onChange={handleChange}
-								value={user.subject}
+								value={mail.subject}
 								autoComplete='off'
 								type='text'
 								name='subject'
@@ -173,7 +167,7 @@ const ContactForm = ({ display, theme, language }) => {
 								onFocus={handleFocus}
 								onBlur={handleBlur}
 								onChange={handleChange}
-								value={user.message}
+								value={mail.message}
 								autoComplete='off'
 								type='text'
 								name='message'
@@ -184,10 +178,22 @@ const ContactForm = ({ display, theme, language }) => {
 
 					<div className='button-container'>
 						<button
+							onClick={() => !isLoading && sendMail()}
 							className={`button button-main ${theme}`}
 						></button>
 						<div className='button-text'>
-							{language === 'en' ? 'Send' : 'Enviar'}
+							{isLoading ? (
+								<div className='loader'>
+									<div></div>
+									<div></div>
+									<div></div>
+									<div></div>
+								</div>
+							) : language === 'en' ? (
+								'Send'
+							) : (
+								'Enviar'
+							)}
 						</div>
 					</div>
 				</div>

@@ -14,6 +14,7 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@react-three/drei": "^9.65.4",
     "@react-three/fiber": "^8.12.2",
+    "emailjs-com": "^3.2.0",
     "events": "^3.3.0",
     "framer-motion": "^10.12.4",
     "gsap": "^3.11.5",
@@ -24,6 +25,7 @@
     "react-router-dom": "^6.10.0",
     "react-slick": "^0.29.0",
     "slick-carousel": "^1.8.1",
+    "sweetalert2": "^11.7.5",
     "TagCloud": "^2.3.2"
   },
   "devDependencies": {

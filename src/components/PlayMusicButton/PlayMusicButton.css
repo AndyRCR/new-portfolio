@@ -49,6 +49,7 @@
 	border-radius: 50%;
 	animation: loader 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
 	border-color: #fff transparent transparent transparent;
+	transition: .3s;
 }
 .loader div:nth-child(1) {
 	animation-delay: -0.45s;
