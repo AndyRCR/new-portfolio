@@ -47,6 +47,7 @@ import bcpclonedesktop1 from '../../assets/images/projects/bcp/bcpclonedesktop.j
 import bcpclonedesktop2 from '../../assets/images/projects/bcp/bcpclonedesktop2.jpg'
 import bcpclonedesktop3 from '../../assets/images/projects/bcp/bcpclonedesktop3.jpg'
 import bcpclonedesktop4 from '../../assets/images/projects/bcp/bcpclonedesktop4.jpg'
+import bcpclonemobile from '../../assets/images/projects/bcp/bcpclonemobile.jpg'
 
 const projects = [
     {
@@ -120,7 +121,7 @@ const projects = [
     {
         name: 'BCP Clone',
         image: bcpclone,
-        carousel: [bcpclone, bcpclonedesktop1, bcpclonedesktop2, bcpclonedesktop3, bcpclonedesktop4],
+        carousel: [bcpclone, bcpclonedesktop1, bcpclonedesktop2, bcpclonedesktop3, bcpclonedesktop4, bcpclonemobile],
         tecnologies: 'React, React-slick, Lottie',
         description: {
             en: {

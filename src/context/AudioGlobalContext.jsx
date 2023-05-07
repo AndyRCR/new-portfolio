@@ -28,14 +28,14 @@ const AudioGlobalContext = ({ children }) => {
 				onplay: () => {
 					setAudioIsLoading(false)
 					setAudioIsPlaying(true)
+					setAudioLoaded(true)
 				},
 				onend: () => {
 					setAudioIsPlaying(false)
 				},
 			})
-			setSound(newSound)
-			setAudioIsLoading(true)
 			newSound.play()
+			setSound(newSound)
 		} else {
 			sound.play()
 			setAudioIsPlaying(true)
