@@ -43,6 +43,10 @@ import pekomobile from '../../assets/images/projects/pekocinema/pekomobile.jpg'
 
 //BCP Clone
 import bcpclone from '../../assets/images/projects/bcp/bcpclone.jpg'
+import bcpclonedesktop1 from '../../assets/images/projects/bcp/bcpclonedesktop.jpg'
+import bcpclonedesktop2 from '../../assets/images/projects/bcp/bcpclonedesktop2.jpg'
+import bcpclonedesktop3 from '../../assets/images/projects/bcp/bcpclonedesktop3.jpg'
+import bcpclonedesktop4 from '../../assets/images/projects/bcp/bcpclonedesktop4.jpg'
 
 const projects = [
     {
@@ -116,7 +120,7 @@ const projects = [
     {
         name: 'BCP Clone',
         image: bcpclone,
-        carousel: [bcpclone],
+        carousel: [bcpclone, bcpclonedesktop1, bcpclonedesktop2, bcpclonedesktop3, bcpclonedesktop4],
         tecnologies: 'React, React-slick, Lottie',
         description: {
             en: {
