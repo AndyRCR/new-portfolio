@@ -3,10 +3,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger.js'
 
 const setScrollTrigger = objs => {
     GSAP.registerPlugin(ScrollTrigger)
-    ScrollTrigger.config({
-        autoRefreshEvents: 'visibilitychange,DOMContentLoaded,load',
-        ignoreMobileResize: true,
-    })
+    ScrollTrigger.config({ ignoreMobileResize: true })
     ScrollTrigger.matchMedia({
         //Desktop
         '(min-width: 1001px)': () => {
