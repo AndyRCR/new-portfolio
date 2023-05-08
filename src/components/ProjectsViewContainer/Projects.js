@@ -73,7 +73,7 @@ const projects = [
             es: {
                 desc: `Panel de administración de Blink, una empresa argentina de prepagas, en la cual los 
                 asesores pueden gestionar clientes, planes, cotizaciones, etc. El panel de administración 
-                esta desaroollado con React y conectado a una API REST desarrollada en Node.js y Express.js, la cual se 
+                esta desarrollado con React y conectado a una API REST desarrollada en Node.js y Express.js, la cual se 
                 conecta a una base de datos MySQL alojada en AWS RDS. El panel de administración 
                 está alojado en un servidor de AWS LightSail. Y cuenta con:`,
                 features: [
