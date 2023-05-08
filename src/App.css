@@ -20,11 +20,6 @@
     height: 100%;
 }
 
-.vanta-canvas{
-    left: auto !important;
-    right: 0 !important;
-}
-
 @media (max-width: 1250px) {
     .view-container{
         margin-left: 0;
