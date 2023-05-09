@@ -18,10 +18,6 @@
     color: #fff;
 }
 
-.navbar-socials.dark .navbar-icon.blue{
-    color: #0077B7;
-}
-
 .navbar-socials .navbar-icon:hover{
     scale: 1.4;
 }

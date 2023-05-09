@@ -17,7 +17,7 @@ const NavbarSocials = ({ theme }) => {
 						rel='noreferrer'
 					>
 						<FontAwesomeIcon
-							className='navbar-icon blue'
+							className='navbar-icon'
 							icon={faLinkedin}
 						/>
 					</a>
@@ -41,7 +41,7 @@ const NavbarSocials = ({ theme }) => {
 						rel='noreferrer'
 					>
 						<FontAwesomeIcon
-							className='navbar-icon blue'
+							className='navbar-icon'
 							icon={faTwitter}
 						/>
 					</a>
