@@ -23,8 +23,8 @@ const HomeMainSection = () => {
 					</div>
 					<p className='hero-main-description'>
 						{language === 'en'
-							? 'Full Stack Developer / Analyst Programer'
-							: 'Desarrollador Full Stack / Analista Programador'}
+							? 'Full Stack Developer / Software Developer'
+							: 'Desarrollador Full Stack / Desarrollador de Software'}
 					</p>
 				</div>
 
