@@ -4,10 +4,10 @@ import { LanguageContext } from '../../context/LanguageGlobalContext'
 import { ThemeContext } from '../../context/ThemeGlobalContext'
 import RubberText from '../RubberText/RubberText'
 import andy from '../../assets/images/icons/andy.png'
-import mongo from '../../assets/images/icons/techs/mongo.png'
+import spring from '../../assets/images/icons/techs/spring.png'
 import express from '../../assets/images/icons/techs/express.png'
 import react from '../../assets/images/icons/techs/react.png'
-import node from '../../assets/images/icons/techs/node.png'
+import angular from '../../assets/images/icons/techs/angular.png'
 import './AboutViewContainer.css'
 
 const AboutViewContainer = () => {
@@ -63,10 +63,10 @@ const AboutViewContainer = () => {
 						alt='andy canales portfolio'
 					/>
 					<div className='techsLogos'>
-						<img id='mongodb' src={mongo} alt='mongodb' />
+						<img id='spring' src={spring} alt='spring' />
 						<img id='express' src={express} alt='express' />
 						<img id='react' src={react} alt='react' />
-						<img id='node' src={node} alt='node' />
+						<img id='angular' src={angular} alt='angular' />
 					</div>
 				</div>
 			</div>

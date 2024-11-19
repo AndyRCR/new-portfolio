@@ -15,6 +15,14 @@ const NavbarMenu = ({ theme }) => {
 			<ul className='navbar-menu-list'>
 				<li
 					className={`navbar-menu-list-item ${
+						location.pathname === '/' ? 'active' : ''
+					}`}
+					onClick={() => handleRedirectionTo('/')}
+				>
+					{language === 'en' ? 'Home' : 'Inicio'}
+				</li>
+				<li
+					className={`navbar-menu-list-item ${
 						location.pathname === '/about' ? 'active' : ''
 					}`}
 					onClick={() => handleRedirectionTo('/about')}

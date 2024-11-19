@@ -38,7 +38,6 @@
 	font-size: 20px;
 	font-weight: 500;
 	margin-top: 20px;
-	text-align: justify;
 	max-width: 750px;
 }
 
@@ -98,13 +97,13 @@
 	height: 70px;
 }
 
-#mongodb,
-#node {
+#spring,
+#angular {
 	align-self: end;
 	animation: iconAnimation 1.5s infinite ease-in-out alternate;
 }
 
-#mongodb {
+#spring {
 	animation: iconAnimation 1.5s infinite ease-in-out alternate;
 }
 #express {
@@ -113,7 +112,7 @@
 #react {
 	animation: iconAnimation 2s infinite ease-in-out alternate;
 }
-#node {
+#angular {
 	animation: iconAnimation 2.25s infinite ease-in-out alternate;
 }
 

@@ -23,7 +23,7 @@ const texts = [
 	'Java',
 ]
 
-const TextSphere = ({ radius }) => {
+const TextSphere = () => {
 	const { theme } = useContext(ThemeContext)
 	const sphere = useRef()
 

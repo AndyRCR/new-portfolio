@@ -10,12 +10,12 @@ import html from '../../assets/images/icons/techs/html.png'
 import css from '../../assets/images/icons/techs/css.png'
 import js from '../../assets/images/icons/techs/js.png'
 import react from '../../assets/images/icons/techs/react.png'
-import three from '../../assets/images/icons/techs/three.png'
+import angular from '../../assets/images/icons/techs/angular.png'
 
-import java from '../../assets/images/icons/techs/java.png'
+import spring from '../../assets/images/icons/techs/spring.png'
 import node from '../../assets/images/icons/techs/node.png'
-import mongo from '../../assets/images/icons/techs/mongo.png'
 import mysql from '../../assets/images/icons/techs/mysql.png'
+import postgre from '../../assets/images/icons/techs/postgre.png'
 import express from '../../assets/images/icons/techs/express.png'
 
 import aws from '../../assets/images/icons/techs/aws.png'
@@ -27,7 +27,7 @@ import adobexd from '../../assets/images/icons/techs/adobexd.png'
 import photoshop from '../../assets/images/icons/techs/photoshop.png'
 import vegas from '../../assets/images/icons/techs/vegas.png'
 import blender from '../../assets/images/icons/techs/blender.png'
-import excel from '../../assets/images/icons/techs/excel.png'
+import selenium from '../../assets/images/icons/techs/selenium.png'
 
 const SkillsTechs = () => {
 	const { theme } = useContext(ThemeContext)
@@ -54,34 +54,34 @@ const SkillsTechs = () => {
 						<p>React</p>
 					</div>
 					<div className='techItem'>
-						<img src={three} alt='three' />
-						<p>Three.js</p>
+						<img src={angular} alt='Angular' />
+						<p>Angular</p>
 					</div>
 				</div>
 			</div>
 
 			<div>
-				<h3>Backend</h3>
+				<h3>Backend/BD</h3>
 				<div className='backend'>
 					<div className='techItem'>
-						<img src={java} alt='Java' />
-						<p>Java</p>
+						<img src={spring} alt='Spring' />
+						<p>Spring</p>
 					</div>
 					<div className='techItem'>
 						<img src={node} alt='Node' />
 						<p>Node</p>
 					</div>
 					<div className='techItem'>
-						<img src={mongo} alt='MongoDB' />
-						<p>MongoDB</p>
+						<img src={express} alt='Express' />
+						<p>Express</p>
+					</div>
+					<div className='techItem'>
+						<img src={postgre} alt='PostgreSQL' />
+						<p>PostgreSQL</p>
 					</div>
 					<div className='techItem'>
 						<img src={mysql} alt='MySQL' />
 						<p>MySQL</p>
-					</div>
-					<div className='techItem'>
-						<img src={express} alt='Express' />
-						<p>Express</p>
 					</div>
 				</div>
 			</div>
@@ -126,8 +126,8 @@ const SkillsTechs = () => {
 						<p>Blender</p>
 					</div>
 					<div className='techItem'>
-						<img src={excel} alt='Excel' />
-						<p>Excel</p>
+						<img src={selenium} alt='Selenium' />
+						<p>Selenium</p>
 					</div>
 				</div>
 			</div>

@@ -39,10 +39,6 @@
 	text-align: center;
 }
 
-.contact-form p{
-	text-align: justify;
-}
-
 /*Container*/
 .contact-form .contact-form-container{
 	display: flex;
