@@ -10,12 +10,16 @@ const ThemeGlobalContext = ({ children }) => {
 			navigator.userAgent
 		)
 
+	const [closedNavbar, setClosedNavbar] = useState(true)
+
 	return (
 		<ThemeContext.Provider
 			value={{
 				theme,
 				setTheme,
 				isDesktop,
+				closedNavbar,
+				setClosedNavbar,
 			}}
 		>
 			{children}
