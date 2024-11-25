@@ -3,14 +3,20 @@ import { createContext, useState } from 'react'
 export const ThemeContext = createContext()
 
 const ThemeGlobalContext = ({ children }) => {
-	const [theme, setTheme] = useState('light')
-	const isDesktop =
-		window.innerWidth >= 1024 &&
+	const getScreenFlag = () =>
+		window.innerWidth > 1250 &&
 		!/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
 			navigator.userAgent
 		)
 
-	const [closedNavbar, setClosedNavbar] = useState(true)
+	const [theme, setTheme] = useState('light')
+	const isDesktop = getScreenFlag()
+
+	const [closedNavbar, setClosedNavbar] = useState(!isDesktop)
+
+	window.addEventListener('resize', () => {
+		setClosedNavbar(!getScreenFlag())
+	})
 
 	return (
 		<ThemeContext.Provider
